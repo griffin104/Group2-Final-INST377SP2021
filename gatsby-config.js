@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `INST377 Group 2 UMD Basketball`,
+    description: `A prototype website for accessing and managing UMD men's basketball statistics`,
+    author: `Griffin Barlow, Abhishek Padmanabhan, Brandon Pennington, Joseph Sanchez, Vig Vishwanathan`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
