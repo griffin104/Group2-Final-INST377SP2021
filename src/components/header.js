@@ -3,32 +3,54 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
+  <nav className="navbar" role="navigation" ariaLabel="main navigation">
+  <div className="navbar-brand">
+    <Link className="navbar-item" to="/">
+      (Todo Logo)
+    </Link>
+
+    <a role="button" className="navbar-burger" ariaLabel="menu" ariaExpanded="false">
+      <span ariaHidden="true"></span>
+      <span ariaHidden="true"></span>
+      <span ariaHidden="true"></span>
+    </a>
+  </div>
+
+  <div className="navbar-menu">
+    <div className="navbar-start">
+      <Link className="navbar-item">
+        Game Stats
+      </Link>
+
+      <Link className="navbar-item">
+        Player Stats
+      </Link>
+
+      <div className="navbar-item has-dropdown is-hoverable">
+        <Link className="navbar-link">
+          More
         </Link>
-      </h1>
+
+        <div className="navbar-dropdown">
+          <Link className="navbar-item">
+            Schedule
+          </Link>
+          <Link className="navbar-item">
+            News
+          </Link>
+          <Link to="/about-us" className="navbar-item">
+            About
+          </Link>
+        </div>
+      </div>
     </div>
-  </header>
+    <div className="navbar-end">
+      <div className="navbar-item">
+        (Todo Login)
+      </div>
+    </div>
+  </div>
+</nav>
 )
 
 Header.propTypes = {
