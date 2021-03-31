@@ -8,7 +8,8 @@ import SEO from "../components/seo"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <div className="is-flex is-flex-direction-column is-vcentered is-align-items-center">
+    <div className="is-flex is-flex-direction-column is-align-items-center">
+      <h1 className="title is-1 has-text-centered">INST377 Group 2</h1>
       <StaticImage
         src="../images/umdlogo.png"
         alt="A UMD basketball background graphic"

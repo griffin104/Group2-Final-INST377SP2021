@@ -30,7 +30,6 @@ const Header = ({ siteTitle }) => (
         <Link className="navbar-link">
           More
         </Link>
-
         <div className="navbar-dropdown">
           <Link className="navbar-item">
             Schedule
