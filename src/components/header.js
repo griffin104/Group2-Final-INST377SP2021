@@ -2,60 +2,68 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
-const Header = ({ siteTitle }) => (
-  <nav className="navbar" role="navigation" ariaLabel="main navigation">
-  <div className="navbar-brand">
-    <Link className="navbar-item" to="/">
-      (Todo Logo)
-    </Link>
-
-    <a role="button" className="navbar-burger" ariaLabel="menu" ariaExpanded="false">
-      <span ariaHidden="true"></span>
-      <span ariaHidden="true"></span>
-      <span ariaHidden="true"></span>
-    </a>
-  </div>
-
-  <div className="navbar-menu">
-    <div className="navbar-start">
-      <Link className="navbar-item">
-        Game Stats
+//There are many ways to define the component, there are probably pros and cons to each
+//but I'm not experienced enough to know that. Just keep this in mind if looking at other
+//examples online.
+const Header = ({ siteTitle }) => {
+  //The following is pretty standard HTML, just with JSX syntax.
+  return (
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <div className="navbar-brand">
+      <Link className="navbar-item" to="/">
+        (Todo Logo)
       </Link>
 
-      <Link className="navbar-item">
-        Player Stats
-      </Link>
+      <div role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </div>
+    </div>
 
-      <div className="navbar-item has-dropdown is-hoverable">
-        <Link className="navbar-link">
-          More
+    <div className="navbar-menu">
+      <div className="navbar-start">
+        <Link className="navbar-item" to="/game-stats">
+          Game Stats
         </Link>
-        <div className="navbar-dropdown">
-          <Link className="navbar-item">
-            Schedule
-          </Link>
-          <Link className="navbar-item">
-            News
-          </Link>
-          <Link to="/about-us" className="navbar-item">
-            About
-          </Link>
+
+        <Link className="navbar-item" to="/player-stats"> 
+          Player Stats
+        </Link>
+
+        <div className="navbar-item has-dropdown is-hoverable">
+          <div className="navbar-link">
+            More
+          </div>
+          <div className="navbar-dropdown">
+            <Link className="navbar-item" to="/schedule">
+              Schedule
+            </Link>
+            <Link className="navbar-item" to="/news">
+              News
+            </Link>
+            <Link className="navbar-item" to="/about-us">
+              About
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="navbar-end">
+        <div className="navbar-item">
+          (Todo Login)
         </div>
       </div>
     </div>
-    <div className="navbar-end">
-      <div className="navbar-item">
-        (Todo Login)
-      </div>
-    </div>
-  </div>
-</nav>
-)
+  </nav>
+  )
+}
 
+//This defines the siteTitle as a string 
 Header.propTypes = {
   siteTitle: PropTypes.string,
 }
 
+//If no siteTitle is provided, an empty string is used
 Header.defaultProps = {
   siteTitle: ``,
 }
