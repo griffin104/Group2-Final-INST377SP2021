@@ -1,19 +1,11 @@
 export default (sequelize, DataTypes) => {
-  const GameShootingStats = sequelize.define(
-    "Game_Shooting_Stats",
+  const GameTeamShooting = sequelize.define(
+    "Game_Team_Shooting",
     {
-      shooting_stats_id: {
+      game_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true
-      },
-      player_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      game_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
       },
       fg_made: {
         type: DataTypes.INTEGER
@@ -35,5 +27,5 @@ export default (sequelize, DataTypes) => {
       },
     }
   );
-  return GameShootingStats;
+  return GameTeamShooting;
 };
