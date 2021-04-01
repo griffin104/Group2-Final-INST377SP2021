@@ -1,3 +1,5 @@
+import Players from "./Players";
+import Schedule from "./Schedule";
 export default (sequelize, DataTypes) => {
   const GameShootingStats = sequelize.define(
     "Game_Shooting_Stats",
@@ -9,11 +11,19 @@ export default (sequelize, DataTypes) => {
       },
       player_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: Players,
+          key: 'player_id'
+        }
       },
       game_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: Schedule,
+          key: 'game_id'
+        }
       },
       fg_made: {
         type: DataTypes.INTEGER

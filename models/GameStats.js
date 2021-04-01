@@ -1,4 +1,5 @@
 import Players from "./Players";
+import Schedule from "./Schedule";
 
 export default (sequelize, DataTypes) => {
   const GameStats = sequelize.define(
@@ -19,8 +20,11 @@ export default (sequelize, DataTypes) => {
       },
       game_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
-        // Add in references for Model Schedule, Key game_id
+        allowNull: false,
+        references: {
+          model: Schedule,
+          key: 'game_id'
+        }
       },
       minutes: {
         type: DataTypes.INTEGER
