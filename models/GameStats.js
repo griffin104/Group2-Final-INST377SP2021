@@ -1,5 +1,3 @@
-import Players from "./Players";
-
 export default (sequelize, DataTypes) => {
   const GameStats = sequelize.define(
     "Game_Stats",
