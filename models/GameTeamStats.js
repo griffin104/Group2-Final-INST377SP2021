@@ -1,31 +1,16 @@
-import Players from "./Players";
-
 export default (sequelize, DataTypes) => {
-  const GameStats = sequelize.define(
-    "Game_Stats",
+  const GameTeamStats = sequelize.define(
+    "Game_Team_Stats",
     {
-      game_stats_id: {
+      game_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true
       },
-      player_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: Players,
-          key: 'player_id'
-        }
-      },
-      game_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-        // Add in references for Model Schedule, Key game_id
-      },
-      minutes: {
+      maryland_score: {
         type: DataTypes.INTEGER
       },
-      points: {
+      opposing_score: {
         type: DataTypes.INTEGER
       },
       off_reb: {
@@ -48,8 +33,9 @@ export default (sequelize, DataTypes) => {
       },
       fouls: {
         type: DataTypes.INTEGER
-      },
-    }
+      }
+    },
+    { freezeTableName: true, timestamps: false }
   );
-  return GameStats;
+  return GameTeamStats;
 };
