@@ -32,9 +32,9 @@
   ],
   "license": "0BSD",
   "scripts": {
+    "start": "node server.mjs",
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "start": "node server.mjs",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "css-build": "node-sass --omit-source-map-url src/components/styles.scss src/components/styles.css",

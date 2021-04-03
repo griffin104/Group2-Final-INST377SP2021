@@ -1,0 +1,2 @@
+(self.webpackChunkinst377_group2=self.webpackChunkinst377_group2||[]).push([[539],{9315:function(e,t,n){"use strict";n.r(t);var l=n(7294),u=n(5444),a=n(5127),c=n(3751);t.default=function(){return l.createElement(a.Z,null,l.createElement(c.Z,{title:"About Us"}),l.createElement("h1",null,"Hi from the second page"),l.createElement("p",null,"Welcome to page 2"),l.createElement(u.Link,{to:"/"},"Go back to the homepage"))}}}]);
+//# sourceMappingURL=component---src-pages-about-us-js-23d7ccdffd22c4b72252.js.map

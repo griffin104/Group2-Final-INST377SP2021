@@ -1,0 +1,2 @@
+(self.webpackChunkinst377_group2=self.webpackChunkinst377_group2||[]).push([[130],{3980:function(e,t,n){"use strict";n.r(t);var u=n(7294),l=n(5127),r=n(3751);t.default=function(){return u.createElement(l.Z,null,u.createElement(r.Z,{title:"Game Stats"}),u.createElement("p",null,"TODO"))}}}]);
+//# sourceMappingURL=component---src-pages-game-stats-js-e2831e58f9e6a216e8c1.js.map

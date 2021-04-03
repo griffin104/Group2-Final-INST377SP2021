@@ -1,0 +1,2 @@
+(self.webpackChunkinst377_group2=self.webpackChunkinst377_group2||[]).push([[522],{9197:function(e,t,n){"use strict";n.r(t);var l=n(7294),u=n(5127),r=n(3751);t.default=function(){return l.createElement(u.Z,null,l.createElement(r.Z,{title:"Player Stats"}),l.createElement("p",null,"TODO"))}}}]);
+//# sourceMappingURL=component---src-pages-player-stats-js-a84176eab5fdd9d78efa.js.map

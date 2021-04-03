@@ -1,0 +1,2 @@
+(self.webpackChunkinst377_group2=self.webpackChunkinst377_group2||[]).push([[336],{873:function(e,t,n){"use strict";n.r(t);var u=n(7294),l=n(5127),r=n(3751);t.default=function(){return u.createElement(l.Z,null,u.createElement(r.Z,{title:"Schedule"}),u.createElement("p",null,"TODO"))}}}]);
+//# sourceMappingURL=component---src-pages-schedule-js-7480981c6ed13599dcf9.js.map
