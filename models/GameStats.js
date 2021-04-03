@@ -1,9 +1,6 @@
-import Players from "./Players";
-import Schedule from "./Schedule";
-
 export default (sequelize, DataTypes) => {
   const GameStats = sequelize.define(
-    "Game_Stats",
+    "game_stats",
     {
       game_stats_id: {
         type: DataTypes.INTEGER,
@@ -13,18 +10,10 @@ export default (sequelize, DataTypes) => {
       player_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: Players,
-          key: 'player_id'
-        }
       },
       game_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: Schedule,
-          key: 'game_id'
-        }
       },
       minutes: {
         type: DataTypes.INTEGER
@@ -53,7 +42,8 @@ export default (sequelize, DataTypes) => {
       fouls: {
         type: DataTypes.INTEGER
       },
-    }
+    },
+    { freezeTableName: true, timestamps: false }
   );
   return GameStats;
 };

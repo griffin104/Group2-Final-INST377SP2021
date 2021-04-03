@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
   const PlayerTotals = sequelize.define(
-    "Player_Totals",
+    "player_totals",
     {
       player_id: {
         type: DataTypes.INTEGER,
@@ -37,7 +37,8 @@ export default (sequelize, DataTypes) => {
       points: {
         type: DataTypes.INTEGER
       }
-    }
+    },
+    { freezeTableName: true, timestamps: false }
   );
   return PlayerTotals;
 };

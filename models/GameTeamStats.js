@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
   const GameTeamStats = sequelize.define(
-    "Game_Team_Stats",
+    "game_team_stats",
     {
       game_id: {
         type: DataTypes.INTEGER,

@@ -1,11 +1,11 @@
 import Players from './Players.js';
-import Schedule from './Schedule';
-import ShootingTotals from './ShootingTotals';
-import PlayerTotals from './PlayerTotals';
-import GameShootingStats from './GameShootingStats';
-import GameStats from './GameStats';
-import GameTeamShooting from './GameTeamShooting';
-import GameTeamStats from './GameTeamStats';
+import Schedule from './Schedule.js';
+import ShootingTotals from './ShootingTotals.js';
+import PlayerTotals from './PlayerTotals.js';
+import GameShootingStats from './GameShootingStats.js';
+import GameStats from './GameStats.js';
+import GameTeamShooting from './GameTeamShooting.js';
+import GameTeamStats from './GameTeamStats.js';
 
 export default {
   Players,

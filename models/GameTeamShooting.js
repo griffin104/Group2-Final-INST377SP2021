@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
   const GameTeamShooting = sequelize.define(
-    "Game_Team_Shooting",
+    "game_team_shooting",
     {
       game_id: {
         type: DataTypes.INTEGER,
@@ -25,7 +25,8 @@ export default (sequelize, DataTypes) => {
       ft_attempted: {
         type: DataTypes.INTEGER
       },
-    }
+    },
+    { freezeTableName: true, timestamps: false }
   );
   return GameTeamShooting;
 };

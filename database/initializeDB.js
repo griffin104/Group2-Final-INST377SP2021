@@ -6,7 +6,7 @@ import modelList from '../models/index.js';
 
 const { DataTypes } = Sequelize;
 
-const env = process.env.NODE_ENV || 'development';
+const env = 'development';
 const config = configOptions[env];
 
 let sequelizeDB;

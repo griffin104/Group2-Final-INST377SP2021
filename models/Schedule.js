@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
   const Schedule = sequelize.define(
-    "Schedule",
+    "schedule",
     {
       game_id: {
         type: DataTypes.INTEGER,
@@ -29,7 +29,8 @@ export default (sequelize, DataTypes) => {
       date_year: {
         type: DataTypes.INTEGER
       }
-    }
+    },
+    { freezeTableName: true, timestamps: false }
   );
   return Schedule;
 };
