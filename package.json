@@ -33,7 +33,7 @@
   "license": "0BSD",
   "scripts": {
     "start": "node server.mjs",
-    "build": "node server.mjs",
+    "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
