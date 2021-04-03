@@ -4,7 +4,6 @@
   "description": "A prototype website for accessing and managing UMD men's basketball statistics",
   "version": "0.1.0",
   "author": "Griffin Barlow, Abhishek Padmanabhan, Brandon Pennington, Joseph Sanchez, Vig Vishwanathan",
-  "type": "module",
   "dependencies": {
     "express": "^4.17.1",
     "gatsby": "^3.1.1",
@@ -40,7 +39,7 @@
     "clean": "gatsby clean",
     "css-build": "node-sass --omit-source-map-url src/components/styles.scss src/components/styles.css",
     "css-watch": "npm run css-build -- --watch",
-    "server": "nodemon server.js"
+    "server": "nodemon server.mjs"
   },
   "repository": {
     "type": "git",

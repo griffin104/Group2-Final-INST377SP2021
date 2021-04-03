@@ -1,7 +1,7 @@
 import express from "express";
 import sequelize from "sequelize";
 
-import db from "../database/initializeDB.js";
+import db from "../database/initializeDB.mjs";
 
 const router = express.Router();
 

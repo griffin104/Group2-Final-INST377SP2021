@@ -1,8 +1,8 @@
 /* eslint-disable linebreak-style */
 import Sequelize from 'sequelize';
 
-import configOptions from './config.js';
-import modelList from '../models/index.js';
+import configOptions from './config.mjs';
+import modelList from '../models/index.mjs';
 
 const { DataTypes } = Sequelize;
 

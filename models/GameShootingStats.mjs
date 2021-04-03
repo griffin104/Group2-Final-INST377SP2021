@@ -1,5 +1,3 @@
-import Players from "./Players.js";
-import Schedule from "./Schedule.js";
 export default (sequelize, DataTypes) => {
   const GameShootingStats = sequelize.define(
     "game_shooting_stats",
