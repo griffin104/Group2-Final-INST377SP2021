@@ -4,7 +4,7 @@ import apiRoutes from './routes/apiRoutes.mjs';
 
 const app = express()
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
