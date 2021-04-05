@@ -6,9 +6,18 @@ import { Link } from "gatsby"
 //but I'm not experienced enough to know that. Just keep this in mind if looking at other
 //examples online.
 const Header = ({ siteTitle }) => {
+  let loggedIn = true
+  let updateRecords = ""
+
+  if (loggedIn) {
+    updateRecords = <Link className="navbar-item" to="/update-records">
+      Update Records
+    </Link>
+  }
+
   //The following is pretty standard HTML, just with JSX syntax.
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav className="navbar mb-6" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
       <Link className="navbar-item" to="/">
         (Todo Logo)
@@ -49,6 +58,7 @@ const Header = ({ siteTitle }) => {
         </div>
       </div>
       <div className="navbar-end">
+        {updateRecords}
         <div className="navbar-item">
           (Todo Login)
         </div>
