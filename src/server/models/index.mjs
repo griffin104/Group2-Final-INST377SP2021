@@ -1,9 +1,13 @@
-import Players from './Players.mjs';
+import PlayerBios from './PlayerBios.mjs';
+import PlayerStats from '.PlayerStats.mjs';
 import Games from './Games.mjs';
-import PlayerGameStats from './PlayerGameStats.mjs'
+import GameStats from './GameStats.mjs';
+import PlayerGameStats from './PlayerGameStats.mjs';
 
 export default {
-  Players,
+  PlayerBios,
+  PlayerStats,
   Games,
+  GameStats,
   PlayerGameStats
 };

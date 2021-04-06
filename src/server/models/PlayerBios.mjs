@@ -1,11 +1,11 @@
 export default (sequelize, DataTypes) => {
-  const Games = sequelize.define(
-      "games",
+  const PlayerBios = sequelize.define(
+      "player_bios",
       {
           
 
       },
       { freezeTableName: true, timestamps: false }
   )
-  return Games
+  return PlayerBios
 }
