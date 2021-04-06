@@ -32,7 +32,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "start": "nodemon src/server/server.mjs",
+    "start": "node src/server/server.mjs",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
