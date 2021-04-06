@@ -1,53 +1,38 @@
 export default (sequelize, DataTypes) => {
-  const Players = sequelize.define(
-    "players",
+  const Games = sequelize.define(
+    "games",
     {
-      player_id: {
+      game_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true
       },
-      player_number: {
+      season: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      first_name: {
+      opposing_school: {
         type: DataTypes.STRING
       },
-      last_name: {
+      home_or_away: {
         type: DataTypes.STRING
       },
-      height_feet: {
-        type: DataTypes.INTEGER
-      },
-      height_inch: {
-        type: DataTypes.INTEGER
-      },
-      weight: {
-        type: DataTypes.INTEGER
-      },
-      hometown_city: {
+      outcome: {
         type: DataTypes.STRING
       },
-      hometown_state: {
-        type: DataTypes.STRING
-      },
-      major: {
-        type: DataTypes.STRING
-      },
-      high_school: {
-        type: DataTypes.STRING
-      },
-      season: {
-        type: DataTypes.INTEGER
-      }, 
-      games: {
+      date_day: {
         type: DataTypes.INTEGER
       },
-      games_started: {
+      date_month: {
         type: DataTypes.INTEGER
       },
-      minutes: {
+      date_year: {
+        type: DataTypes.INTEGER
+      },
+      maryland_score: {
+        type: DataTypes.INTEGER
+      },
+      opposing_score: {
         type: DataTypes.INTEGER
       },
       off_reb: {
@@ -59,16 +44,16 @@ export default (sequelize, DataTypes) => {
       assists: {
         type: DataTypes.INTEGER
       },
-      steals: {
+      turnovers: {
         type: DataTypes.INTEGER
       },
       blocks: {
         type: DataTypes.INTEGER
       },
-      turnovers: {
+      steals: {
         type: DataTypes.INTEGER
       },
-      points: {
+      fouls: {
         type: DataTypes.INTEGER
       },
       fg_made: {
@@ -80,6 +65,9 @@ export default (sequelize, DataTypes) => {
       three_point_made: {
         type: DataTypes.INTEGER
       },
+      three_point_attempted: {
+        type: DataTypes.INTEGER
+      },
       ft_made: {
         type: DataTypes.INTEGER
       },
@@ -89,5 +77,5 @@ export default (sequelize, DataTypes) => {
     },
     { freezeTableName: true, timestamps: false }
   );
-  return Players;
+  return Games;
 };

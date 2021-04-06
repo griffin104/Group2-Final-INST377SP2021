@@ -10,62 +10,6 @@ router.get("/", (req, res) => {
 })
 
 
-// GAME SHOOTING STATS
-
-router.get("/game-shooting-stats", async (req, res) => {
-    try {
-      const stats = await db.GameShootingStats.findAll();
-      const reply =
-        stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error("Server error");
-    } 
-  });
-
-// GAME STATS
-
-router.get("/game-stats", async (req, res) => {
-    try {
-      const stats = await db.GameStats.findAll();
-      const reply =
-        stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error("Server error");
-    } 
-  });
-
-// GAME TEAM SHOOTING
-
-router.get("/game-team-shooting", async (req, res) => {
-    try {
-      const stats = await db.GameTeamShooting.findAll();
-      const reply =
-        stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error("Server error");
-    } 
-  });
-
-// GAME TEAM STATS
-
-router.get("/game-team-stats", async (req, res) => {
-    try {
-      const stats = await db.GameTeamStats.findAll();
-      const reply =
-        stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error("Server error");
-    } 
-  });
-
 // PLAYERS
 
 router.get("/players", async (req, res) => {
@@ -80,11 +24,12 @@ router.get("/players", async (req, res) => {
     } 
   });
 
-// PLAYER TOTALS
 
-router.get("/player-totals", async (req, res) => {
+// GAMES
+
+router.get("/games", async (req, res) => {
     try {
-      const stats = await db.PlayerTotals.findAll();
+      const stats = await db.Games.findAll();
       const reply =
         stats.length > 0 ? { data: stats } : { message: "no results found" };
       res.json(reply);
@@ -94,32 +39,19 @@ router.get("/player-totals", async (req, res) => {
     } 
   });
 
-// SCHEDULE
+// PLAYER GAME STATS
 
-router.get("/schedule", async (req, res) => {
-    try {
-      const stats = await db.Schedule.findAll();
-      const reply =
-        stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error("Server error");
-    } 
-  });
+router.get("/player-game-stats", async (req, res) => {
+  try {
+    const stats = await db.PlayerGameStats.findAll();
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
+  } catch (err) {
+    console.error(err);
+    res.error("Server error");
+  } 
+});
 
-// SHOOTING TOTALS
-
-router.get("/shooting-totals", async (req, res) => {
-    try {
-      const stats = await db.ShootingTotals.findAll();
-      const reply =
-        stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error("Server error");
-    } 
-  });
 
 export default router
