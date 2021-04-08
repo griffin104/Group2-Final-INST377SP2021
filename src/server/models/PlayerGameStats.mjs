@@ -2,16 +2,19 @@ export default (sequelize, DataTypes) => {
     const PlayerGameStats = sequelize.define(
         "player_game_stats",
         {
-            game_stats_id: {
+            player_game_stats_id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                autoIncrement: true,
                 primaryKey: true
             },
             player_id: {
-                type: DataTypes.INTEGER
+                type: DataTypes.INTEGER,
+                allowNull: false
             },
             game_id: {
-                type: DataTypes.INTEGER
+                type: DataTypes.INTEGER,
+                allowNull: false
             },
             minutes: {
                 type: DataTypes.INTEGER
