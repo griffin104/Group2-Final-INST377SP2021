@@ -5,11 +5,13 @@ export default (sequelize, DataTypes) => {
             player_stats_id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                autoIncrement: true,
                 primaryKey: true
             },
             player_id: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
+                unique: true
             },
             games: {
                 type: DataTypes.INTEGER,
