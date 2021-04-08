@@ -34,6 +34,11 @@ router.get("/player_game_stats:game_stats_id", async (req, res) => {
     res.error("Server Error");
 });
 
+router.delete("player_game_stats:game_stats_id", async (req, res) => {
+  try {
+    //// Delete a row
+  }
+});
 /////////////////// /////////////////// ///////////////////
 /////////////////// PLAYERS_BIOS ///////////////////
 /////////////////// /////////////////// ///////////////////
@@ -58,6 +63,12 @@ router.get("/player_bios:player_id", async (req, res) => {
     res.error("Server Error");
 });
 
+router.delete("/player_bios:player_id", async (req, res) => {
+  try {
+    //// Delete a row
+  }
+});
+
 /////////////////// /////////////////// ///////////////////
 /////////////////// GAMES ///////////////////
 /////////////////// /////////////////// ///////////////////
@@ -74,15 +85,19 @@ router.get("/games", async (req, res) => {
   });
 
 
-  router.get("/games:game_id", async (req, res) => {
-    try {
-      // ENDPOINT to get ELEMENT by ID
-    } catch (err) {
-      console.error(err);
-      res.error("Server Error");
-  });
+router.get("/games:game_id", async (req, res) => {
+  try {
+    // ENDPOINT to get ELEMENT by ID
+  } catch (err) {
+    console.error(err);
+    res.error("Server Error");
+});
 
-
+router.delete("/games:game_id", async (req, res) => {
+  try {
+    //// Delete a row
+  }
+});
 /////////////////// /////////////////// ///////////////////
 /////////////////// Game Stats END POINTS ///////////////////
 /////////////////// /////////////////// ///////////////////
@@ -104,6 +119,11 @@ router.get("/game_stats:game_stats_id", async (req, res) => {
     res.error("Server Error");
 });
 
+router.delete("/game_stats:game_stats_id", async (req, res) => {
+  try {
+    //// Delete a row
+  }
+});
 
 /////////////////// /////////////////// ///////////////////
 /////////////////// Player Stats END POINTS ///////////////////
@@ -126,5 +146,9 @@ router.get("/player_stats:player_stats_id", async (req, res) => {
     res.error("Server Error");
 });
 
-
+router.delete("/player_stats:player_stats_id",, async (req, res) => {
+  try {
+    //// Delete a row
+  }
+});
 export default router
