@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 })
 
 
-  /////////////////// /////////////////// ///////////////////
+/////////////////// /////////////////// ///////////////////
 /////////////////// PLAYER GAME STATS ///////////////////
 /////////////////// /////////////////// ///////////////////
 
@@ -37,7 +37,7 @@ router.get("/player_game_stats:game_stats_id", async (req, res) => {
 /////////////////// /////////////////// ///////////////////
 /////////////////// PLAYERS_BIOS ///////////////////
 /////////////////// /////////////////// ///////////////////
-router.get("/players", async (req, res) => {
+router.get("/players_bios", async (req, res) => {
     try {
       const stats = await db.Players.findAll();
       const reply =
@@ -48,6 +48,15 @@ router.get("/players", async (req, res) => {
       res.error("Server error");
     } 
   });
+
+
+router.get("/player_bios:player_id", async (req, res) => {
+  try {
+    //ENDPOINT to get ELEMENT by ID
+  } catch (err) {
+    console.error(err);
+    res.error("Server Error");
+});
 
 /////////////////// /////////////////// ///////////////////
 /////////////////// GAMES ///////////////////
@@ -65,7 +74,7 @@ router.get("/games", async (req, res) => {
   });
 
 
-  router.get("/game_stats:game_stats_id", async (req, res) => {
+  router.get("/games:game_id", async (req, res) => {
     try {
       // ENDPOINT to get ELEMENT by ID
     } catch (err) {
