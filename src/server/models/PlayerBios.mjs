@@ -9,50 +9,39 @@ export default (sequelize, DataTypes) => {
               primaryKey: true
           },
           player_number: {
-              type: DataTypes.INTEGER,
-              allowNull: false
+              type: DataTypes.INTEGER
           },
           first_name: {
-              type: DataTypes.VARCHAR,
-              allowNull: false
+              type: DataTypes.VARCHAR
           },
           last_name: {
-              type: DataTypes.VARCHAR,
-              allowNull: false
+              type: DataTypes.VARCHAR
           },
           height_feet: {
-              type: DataTypes.INTEGER,
-              allowNull: false
+              type: DataTypes.INTEGER
           },
           height_inches: {
-              type: DataTypes.INTEGER,
-              allowNull: false
+              type: DataTypes.INTEGER
           },
           weight: {
-              type: DataTypes.INTEGER,
-              allowNull: false
+              type: DataTypes.INTEGER
           },
           hometown_city: {
-              type: DataTypes.VARCHAR,
-              allowNull: false
+              type: DataTypes.VARCHAR
           },
           hometown_state: {
-              type: DataTypes.VARCHAR,
-              allowNull: false
+              type: DataTypes.VARCHAR
           },
           major: {
-              type: DataTypes.VARCHAR,
-              allowNull: false
+              type: DataTypes.VARCHAR
           },
           high_school: {
-              type: DataTypes.VARCHAR,
-              allowNull: false
+              type: DataTypes.VARCHAR
           },
           season: {
-              type: DataTypes.INTEGER,
-              allowNull: false
+              type: DataTypes.INTEGER
           }
-          
+          ,
 
       },
       { freezeTableName: true, timestamps: false }
