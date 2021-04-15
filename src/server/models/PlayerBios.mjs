@@ -2,15 +2,11 @@ export default (sequelize, DataTypes) => {
   const PlayerBios = sequelize.define(
       "player_bios",
       {
-          player_bios_id: {
+          player_id: {
               type: DataTypes.INTEGER,
               allowNull: false,
               autoIncrement: true,
               primaryKey: true
-          },
-          player_id: {
-              type: DataTypes.INTEGER,
-              allowNull: false
           },
           player_number: {
               type: DataTypes.INTEGER,
