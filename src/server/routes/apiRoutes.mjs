@@ -117,8 +117,12 @@ router.get("/player-stats", async (req, res) => {
 
 router.get("/player-stats/:player_stats_id", async (req, res) => {
   try {
-    // ENDPOINT to get ELEMENT by ID
-    res.send("No Endpoint")
+    const playerStats = await db.PlayerStats.findAll({
+      where: {
+        player_stats_id: req.params.player_stats_id
+      }
+    })
+    res.json(playerStats)
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -189,8 +193,12 @@ router.put("/player-stats", async (req, res) => {
 
 router.delete("/player-stats/:player_stats_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Endpoint")
+    await db.PlayerStats.destroy({
+      where: {
+        player_stats_id: req.params.player_stats_id
+      }
+    })
+    res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -397,8 +405,12 @@ router.get("/player-game-stats", async (req, res) => {
 
 router.get("/player-game-stats/:player_game_stats_id", async (req, res) => {
   try {
-    //ENDPOINT to get ELEMENT by ID
-    res.send("No Endpoint")
+    const stats = await db.PlayerGameStats.findAll({
+      where: {
+        player_game_stats_id: req.params.player_game_stats_id
+      }
+    })
+    res.json(stats)
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -468,8 +480,12 @@ router.put("/player-game-stats", async (req, res) => {
 
 router.delete("/player-game-stats/:player_game_stats_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Endpoint")
+    await db.PlayerGameStats.destroy({
+      where: {
+        player_game_stats_id: req.params.player_game_stats_id
+      }
+    })
+    res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err);
     res.error("Server Error");
