@@ -13,13 +13,13 @@ export default (sequelize, DataTypes) => {
                 allowNull: false,
             },
             outcome: {
-                type: DataTypes.VARCHAR
+                type: DataTypes.STRING
             },
             maryland_score: {
                 type: DataTypes.INTEGER
             },
             opposing_score: {
-                type: DataTypes.INTER
+                type: DataTypes.INTEGER
             },
             off_reb: {
                 type: DataTypes.INTEGER
