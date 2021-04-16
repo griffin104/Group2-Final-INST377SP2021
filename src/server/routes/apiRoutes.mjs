@@ -214,7 +214,7 @@ router.get("/games", async (req, res) => {
       const stats = await db.Games.findAll();
       const reply =
         stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply); */
+      res.json(reply); 
       res.send("No Database")
     } catch (err) {
       console.error(err);
@@ -268,7 +268,7 @@ router.put("/games", async (req, res) => {
         },
       }
     );
-    res.send("Successfully Updated"); */
+    res.send("Successfully Updated");
     res.send("No Database")
   } catch (err) {
     console.error(err);
