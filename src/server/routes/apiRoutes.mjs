@@ -211,7 +211,7 @@ router.delete("/player-stats/:player_stats_id", async (req, res) => {
 /////////////////// ///// ///////////////////
 router.get("/games", async (req, res) => {
     try {
-      /* const stats = await db.Games.findAll();
+      const stats = await db.Games.findAll();
       const reply =
         stats.length > 0 ? { data: stats } : { message: "no results found" };
       res.json(reply); */
@@ -235,7 +235,7 @@ router.get("/games/:game_id", async (req, res) => {
 
 router.post("/games", async (req, res) => {
   try {
-    /* const newGame = await db.Games.create({
+    const newGame = await db.Games.create({
       season: req.body.season,
       opposing_school: req.body.opposing_school,
       home_or_away: req.body.home_or_away,
@@ -243,7 +243,7 @@ router.post("/games", async (req, res) => {
       date_month: req.body.date_month,
       date_year: req.body.date_year
     });
-    res.json(newGame); */
+    res.json(newGame); 
     res.send("No Database")
   } catch (err) {
     console.error(err);
@@ -253,7 +253,7 @@ router.post("/games", async (req, res) => {
 
 router.put("/games", async (req, res) => {
   try {
-    /* await db.Games.update(
+    await db.Games.update(
       {
         season: req.body.season,
         opposing_school: req.body.opposing_school,
