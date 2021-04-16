@@ -12,10 +12,10 @@ export default (sequelize, DataTypes) => {
               type: DataTypes.INTEGER
           },
           first_name: {
-              type: DataTypes.VARCHAR
+              type: DataTypes.STRING
           },
           last_name: {
-              type: DataTypes.VARCHAR
+              type: DataTypes.STRING
           },
           height_feet: {
               type: DataTypes.INTEGER
@@ -27,16 +27,16 @@ export default (sequelize, DataTypes) => {
               type: DataTypes.INTEGER
           },
           hometown_city: {
-              type: DataTypes.VARCHAR
+              type: DataTypes.STRING
           },
           hometown_state: {
-              type: DataTypes.VARCHAR
+              type: DataTypes.STRING
           },
           major: {
-              type: DataTypes.VARCHAR
+              type: DataTypes.STRING
           },
           high_school: {
-              type: DataTypes.VARCHAR
+              type: DataTypes.STRING
           },
           season: {
               type: DataTypes.INTEGER

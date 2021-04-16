@@ -12,10 +12,10 @@ export default (sequelize, DataTypes) => {
           type: DataTypes.INTEGER
       },
       opposing_school: {
-          type: DataTypes.VARCHAR
+          type: DataTypes.STRING
       },
       home_or_away: {
-          type: DataTypes.VARCHAR
+          type: DataTypes.STRING
       },
       date_day: {
           type: DataTypes.INTEGER
