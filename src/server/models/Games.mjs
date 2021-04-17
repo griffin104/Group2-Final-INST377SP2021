@@ -9,7 +9,8 @@ export default (sequelize, DataTypes) => {
           primaryKey: true
       },
       season: {
-          type: DataTypes.INTEGER
+          type: DataTypes.INTEGER,
+          allowNull: false
       },
       opposing_school: {
           type: DataTypes.STRING

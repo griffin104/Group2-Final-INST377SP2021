@@ -11,6 +11,7 @@ export default (sequelize, DataTypes) => {
             game_id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                unique: true
             },
             outcome: {
                 type: DataTypes.STRING
@@ -57,7 +58,7 @@ export default (sequelize, DataTypes) => {
             ft_made: {
                 type: DataTypes.INTEGER
             },
-            ft_attemped: {
+            ft_attempted: {
                 type: DataTypes.INTEGER
             }
 
