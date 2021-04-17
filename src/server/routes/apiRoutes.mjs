@@ -16,11 +16,10 @@ router.get("/", (req, res) => {
 /////////////////// /////////// ///////////////////
 router.get("/player-bios", async (req, res) => {
     try {
-      /* const stats = await db.PlayerBios.findAll();
+      const stats = await db.PlayerBios.findAll();
       const reply =
         stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply); */
-      res.send("No Database")
+      res.json(reply);
     } catch (err) {
       console.error(err);
       res.error("Server error");
@@ -31,7 +30,7 @@ router.get("/player-bios", async (req, res) => {
 router.get("/player-bios/:player_id", async (req, res) => {
   try {
     //ENDPOINT to get ELEMENT by ID
-    res.send("No Database")
+    res.send("No Endpoint")
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -40,7 +39,7 @@ router.get("/player-bios/:player_id", async (req, res) => {
 
 router.post("/player-bios", async (req, res) => {
   try {
-    /* const newPlayerBio = await db.PlayerBios.create({
+      const newPlayerBio = await db.PlayerBios.create({
       player_number: req.body.player_number,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -53,8 +52,7 @@ router.post("/player-bios", async (req, res) => {
       high_school: req.body.high_school,
       season: req.body.season
     });
-    res.json(newPlayerBio); */
-    res.send("No Database")
+    res.json(newPlayerBio);
   } catch (err) {
     console.error(err);
     res.error("Server error");
@@ -63,7 +61,7 @@ router.post("/player-bios", async (req, res) => {
 
 router.put("/player-bios", async (req, res) => {
   try {
-    /* await db.PlayerBios.update(
+    await db.PlayerBios.update(
       {
         player_number: req.body.player_number,
         first_name: req.body.first_name,
@@ -83,8 +81,7 @@ router.put("/player-bios", async (req, res) => {
         },
       }
     );
-    res.send("Successfully Updated"); */
-    res.send("No Database")
+    res.send("Successfully Updated"); 
   } catch (err) {
     console.error(err);
     res.error("Server error");
@@ -94,7 +91,7 @@ router.put("/player-bios", async (req, res) => {
 router.delete("/player-bios/:player_id", async (req, res) => {
   try {
     //// Delete a row
-    res.send("No Database")
+    res.send("No Endpoint")
   } catch (err) {
     console.error(err)
     res.error("Server Error")
@@ -107,18 +104,24 @@ router.delete("/player-bios/:player_id", async (req, res) => {
 /////////////////// //////////// ///////////////////
 router.get("/player-stats", async (req, res) => {
   try {
-    const playerStats = await db.PlayerStats.findAll();
-    res.send(playerStats);
+    const stats = await db.PlayerStats.findAll();
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
-  }
+    res.error("Server error");
+  } 
 });
 
 router.get("/player-stats/:player_stats_id", async (req, res) => {
   try {
-    // ENDPOINT to get ELEMENT by ID
-    res.send("No Endpoint")
+    const playerStats = await db.PlayerStats.findAll({
+      where: {
+        player_stats_id: req.params.player_stats_id
+      }
+    })
+    res.json(playerStats)
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -189,8 +192,12 @@ router.put("/player-stats", async (req, res) => {
 
 router.delete("/player-stats/:player_stats_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Endpoint")
+    await db.PlayerStats.destroy({
+      where: {
+        player_stats_id: req.params.player_stats_id
+      }
+    })
+    res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -203,10 +210,10 @@ router.delete("/player-stats/:player_stats_id", async (req, res) => {
 /////////////////// ///// ///////////////////
 router.get("/games", async (req, res) => {
     try {
-      /* const stats = await db.Games.findAll();
+      const stats = await db.Games.findAll();
       const reply =
         stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply); */
+      res.json(reply); 
       res.send("No Database")
     } catch (err) {
       console.error(err);
@@ -227,7 +234,7 @@ router.get("/games/:game_id", async (req, res) => {
 
 router.post("/games", async (req, res) => {
   try {
-    /* const newGame = await db.Games.create({
+    const newGame = await db.Games.create({
       season: req.body.season,
       opposing_school: req.body.opposing_school,
       home_or_away: req.body.home_or_away,
@@ -235,7 +242,7 @@ router.post("/games", async (req, res) => {
       date_month: req.body.date_month,
       date_year: req.body.date_year
     });
-    res.json(newGame); */
+    res.json(newGame); 
     res.send("No Database")
   } catch (err) {
     console.error(err);
@@ -245,7 +252,7 @@ router.post("/games", async (req, res) => {
 
 router.put("/games", async (req, res) => {
   try {
-    /* await db.Games.update(
+    await db.Games.update(
       {
         season: req.body.season,
         opposing_school: req.body.opposing_school,
@@ -260,7 +267,7 @@ router.put("/games", async (req, res) => {
         },
       }
     );
-    res.send("Successfully Updated"); */
+    res.send("Successfully Updated");
     res.send("No Database")
   } catch (err) {
     console.error(err);
@@ -284,13 +291,14 @@ router.delete("/games/:game_id", async (req, res) => {
 /////////////////// ////////// ///////////////////
 router.get("/game-stats", async (req, res) => {
   try {
-    /* const gameStats = await db.GameStats.findAll();
-    res.send(gameStats); */
-    res.send("No Database")
+    const stats = await db.GameStats.findAll();
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
-  }
+    res.error("Server error");
+  } 
 });
 
 router.get("/game-stats/:game_stats_id", async (req, res) => {
@@ -305,8 +313,8 @@ router.get("/game-stats/:game_stats_id", async (req, res) => {
 
 router.post("/game-stats", async (req, res) => {
   try {
-    /* const newGameStats = await db.GameStats.create({
-      game_id: req.body.game_id
+    const newGameStats = await db.GameStats.create({
+      game_id: req.body.game_id,
       outcome: req.body.outcome,
       maryland_score: req.body.maryland_score,
       opposing_score: req.body.opposing_score,
@@ -324,8 +332,7 @@ router.post("/game-stats", async (req, res) => {
       ft_made: req.body.ft_made,
       ft_attempted: req.body.ft_attempted
     });
-    res.json(newGameStats); */
-    res.send("No Database")
+    res.json(newGameStats); 
   } catch (err) {
     console.error(err);
     res.error("Server error");
@@ -334,7 +341,7 @@ router.post("/game-stats", async (req, res) => {
 
 router.put("/game-stats", async (req, res) => {
   try {
-    /* await db.Games.update(
+    await db.Games.update(
       {
         game_id: req.body.game_id,
         outcome: req.body.outcome,
@@ -360,7 +367,7 @@ router.put("/game-stats", async (req, res) => {
         },
       }
     ); 
-    res.send("Successfully Updated"); */
+    res.send("Successfully Updated");
     res.send("No Database")
   } catch (err) {
     console.error(err);
@@ -371,7 +378,7 @@ router.put("/game-stats", async (req, res) => {
 router.delete("/game-stats/:game_stats_id", async (req, res) => {
   try {
     //// Delete a row
-    res.send("No Database")
+    res.send("No Endpoints")
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -419,8 +426,12 @@ router.get("/game_stats:game_stats_id", async (req, res) => {
 
 router.get("/player-game-stats/:player_game_stats_id", async (req, res) => {
   try {
-    //ENDPOINT to get ELEMENT by ID
-    res.send("No Endpoint")
+    const stats = await db.PlayerGameStats.findAll({
+      where: {
+        player_game_stats_id: req.params.player_game_stats_id
+      }
+    })
+    res.json(stats)
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -490,8 +501,12 @@ router.put("/player-game-stats", async (req, res) => {
 
 router.delete("/player-game-stats/:player_game_stats_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Endpoint")
+    await db.PlayerGameStats.destroy({
+      where: {
+        player_game_stats_id: req.params.player_game_stats_id
+      }
+    })
+    res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err);
     res.error("Server Error");

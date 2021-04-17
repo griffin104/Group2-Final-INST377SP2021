@@ -9,7 +9,8 @@ export default (sequelize, DataTypes) => {
               primaryKey: true
           },
           player_number: {
-              type: DataTypes.INTEGER
+              type: DataTypes.INTEGER,
+              allowNull: false
           },
           first_name: {
               type: DataTypes.STRING
@@ -20,7 +21,7 @@ export default (sequelize, DataTypes) => {
           height_feet: {
               type: DataTypes.INTEGER
           },
-          height_inches: {
+          height_inch: {
               type: DataTypes.INTEGER
           },
           weight: {
