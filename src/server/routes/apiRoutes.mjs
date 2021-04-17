@@ -29,8 +29,12 @@ router.get("/player-bios", async (req, res) => {
 
 router.get("/player-bios/:player_id", async (req, res) => {
   try {
-    //ENDPOINT to get ELEMENT by ID
-    res.send("No Endpoint")
+    const playerStats = await db.PlayerBios.findAll({
+      where: {
+        player_id: req.params.player_id
+      }
+    })
+    res.json(playerStats)
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -90,8 +94,12 @@ router.put("/player-bios", async (req, res) => {
 
 router.delete("/player-bios/:player_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Endpoint")
+    await db.PlayerBios.destroy({
+      where: {
+        player_id: req.params.player_id
+      }
+    })
+    res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err)
     res.error("Server Error")
@@ -224,8 +232,12 @@ router.get("/games", async (req, res) => {
 
 router.get("/games/:game_id", async (req, res) => {
   try {
-    // ENDPOINT to get ELEMENT by ID
-    res.send("No Database")
+    const playerStats = await db.Games.findAll({
+      where: {
+        game_id: req.params.game_id
+      }
+    })
+    res.json(playerStats)
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -277,8 +289,12 @@ router.put("/games", async (req, res) => {
 
 router.delete("/games/:game_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Database")
+    await db.Games.destroy({
+      where: {
+        game_id: req.params.game_id
+      }
+    })
+    res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err);
     res.error("Server Error");
