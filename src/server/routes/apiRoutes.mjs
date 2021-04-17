@@ -303,8 +303,12 @@ router.get("/game-stats", async (req, res) => {
 
 router.get("/game-stats/:game_stats_id", async (req, res) => {
   try {
-    // ENDPOINT to get ELEMENT by ID
-    res.send("No Database")
+    const game_stats = await db.GameStats.findall({
+      where: {
+        game_stats_id: req.params.game_stats_id
+      }
+    })
+    res.json(game_stats)
   } catch (err) {
     console.error(err);
     res.error("Server Error");
@@ -341,7 +345,7 @@ router.post("/game-stats", async (req, res) => {
 
 router.put("/game-stats", async (req, res) => {
   try {
-    await db.Games.update(
+    await db.GameStats.update(
       {
         game_id: req.body.game_id,
         outcome: req.body.outcome,
@@ -377,8 +381,12 @@ router.put("/game-stats", async (req, res) => {
 
 router.delete("/game-stats/:game_stats_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Endpoints")
+    await db.GameStats.destroy({
+      where: {
+        game_stats_id: req.params.game_stats_id
+      }
+    })
+    res.send("Record Deleted")
   } catch (err) {
     console.error(err);
     res.error("Server Error");
