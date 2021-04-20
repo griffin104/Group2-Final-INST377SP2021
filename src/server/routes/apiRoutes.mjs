@@ -516,6 +516,16 @@ router.delete("/player-game-stats/:player_game_stats_id", async (req, res) => {
 /////////////////// Custom Query ///////////////////
 /////////////////// //////////// ///////////////////
 
+router.get("/game-info", async (req,res) => {
+  try {
+    const gameInfo = await db.sequelizeDB.query('SELECT * FROM games JOIN game_stats ON games.game_id = game_stats.game_id')
+    res.json(gameInfo[0])
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err)
+  }
+})
+
 router.get("/custom", async (req, res) => {
   try {
     const result = await db.sequelizeDB.query(req.body.query, {
