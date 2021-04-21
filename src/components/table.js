@@ -1,6 +1,5 @@
 import * as React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 
 const Table = ( {table, headers} ) => {
 
@@ -10,7 +9,7 @@ const Table = ( {table, headers} ) => {
         properties = Object.getOwnPropertyNames(table[0])
     }
 
-    return(
+    return (
         <table className="table is-striped is-bordered is-hoverable center has-text-centered">
         <thead>
           <tr>

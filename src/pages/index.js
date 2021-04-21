@@ -10,8 +10,6 @@ import SEO from "../components/seo"
 
 //All pages should use the format below 'const {page-name} = () => ({code})', followed by 'export default {page=name}
 const IndexPage = () => (
-
-
   
   //<Layout> should surround everyone else in the page, if for any reason it doesn't, use an empty tag to surround everything
   <Layout>

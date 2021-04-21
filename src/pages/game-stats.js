@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 const GameStats = () => {
 
   let tableData = []
+  let prefix
 
   const [gameInfo, setGameInfo] = useState(0)
   useEffect(() => {
@@ -19,10 +20,15 @@ const GameStats = () => {
 
   if (typeof gameInfo === 'object') {
     gameInfo.forEach((game) => {
+      if (game.home_or_away == "Home") {
+        prefix = "vs "
+      } else {
+        prefix = "at "
+      }
+
       tableData.push({
         date: `${game.date_day}/${game.date_month}/${game.date_year}`,
-        opposing_school: game.opposing_school,
-        home_or_away: game.home_or_away,
+        opposing_school: prefix + game.opposing_school,
         outcome: game.outcome,
         maryland_score: game.maryland_score,
         opposing_score: game.opposing_score,
@@ -43,8 +49,8 @@ const GameStats = () => {
     })
   }
 
-  const headers = ["Date", "Opposing School", "Home or Away", "Outcome", "Maryland Score", "Opposing Score", "OffReb",
-                    "DefReb", "Assists", "TO", "Blocks", "Steals", "Fouls", "fg_m", "fg_a", "3pt_m", "3pt_a", "ft_m", "ft_a"]
+  const headers = ["Date", "Opponent", "W/L", "Maryland Score", "Opposing Score", "OREB",
+                    "DREB", "AST", "TO", "BLK", "STL", "PF", "FGM", "FGA", "3FGM", "3FGA", "FTM", "FTA"]
 
   return(
   <Layout>
