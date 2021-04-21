@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
 
+import Table from "../components/table"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const GameStats = () => {
 
-  let displayedTable = []
+  let tableData = []
 
   const [gameInfo, setGameInfo] = useState(0)
   useEffect(() => {
@@ -15,65 +16,41 @@ const GameStats = () => {
         setGameInfo(resultData)
       }) 
   }, [])
+
   if (typeof gameInfo === 'object') {
-    displayedTable = gameInfo.slice(0)
-    console.log(displayedTable)
+    gameInfo.forEach((game) => {
+      tableData.push({
+        date: `${game.date_day}/${game.date_month}/${game.date_year}`,
+        opposing_school: game.opposing_school,
+        home_or_away: game.home_or_away,
+        outcome: game.outcome,
+        maryland_score: game.maryland_score,
+        opposing_score: game.opposing_score,
+        off_reb: game.off_reb,
+        def_reb: game.def_reb,
+        assists: game.assists,
+        turnovers: game.turnovers,
+        blocks: game.blocks,
+        steals: game.steals,
+        fouls: game.fouls,
+        fg_made: game.fg_made,
+        fg_attempted: game.fg_attempted,
+        three_point_made: game.three_point_made,
+        three_point_attempted: game.three_point_attempted,
+        ft_made: game.ft_made,
+        ft_attempted: game.ft_attempted
+      })
+    })
   }
+
+  const headers = ["Date", "Opposing School", "Home or Away", "Outcome", "Maryland Score", "Opposing Score", "OffReb",
+                    "DefReb", "Assists", "TO", "Blocks", "Steals", "Fouls", "fg_m", "fg_a", "3pt_m", "3pt_a", "ft_m", "ft_a"]
 
   return(
   <Layout>
     <SEO title="Game Stats" />
     <div id="tableContainer">
-      <table className="table is-striped is-bordered is-hoverable center has-text-centered">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Opposing School</th>
-            <th>Home or Away</th>
-            <th>Outcome</th>
-            <th>Maryland Score</th>
-            <th>Opposing Score</th>
-            <th>OffReb</th>
-            <th>DefReb</th>
-            <th>Assists</th>
-            <th>TO</th>
-            <th>Blocks</th>
-            <th>Steals</th>
-            <th>Fouls</th>
-            <th>fg_m</th>
-            <th>fg_a</th>
-            <th>3pt_m</th>
-            <th>3pt_a</th>
-            <th>ft_m</th>
-            <th>ft_a</th>
-          </tr>
-        </thead>
-        <tbody className="table-body">
-          {displayedTable.map(row => (
-             <tr>
-              <td>{`${row.date_day}/${row.date_month}/${row.date_year}`}</td>
-              <td>{row.opposing_school}</td>
-              <td>{row.home_or_away}</td>
-              <td>{row.outcome}</td>
-              <td>{row.maryland_score}</td>
-              <td>{row.opposing_score}</td>
-              <td>{row.off_reb}</td>
-              <td>{row.def_reb}</td>
-              <td>{row.assists}</td>
-              <td>{row.turnovers}</td>
-              <td>{row.blocks}</td>
-              <td>{row.steals}</td>
-              <td>{row.fouls}</td>
-              <td>{row.fg_made}</td>
-              <td>{row.fg_attempted}</td>
-              <td>{row.three_point_made}</td>
-              <td>{row.three_point_attempted}</td>
-              <td>{row.ft_made}</td>
-              <td>{row.ft_attempted}</td>
-            </tr> 
-          ))}
-        </tbody>
-      </table>
+      <Table table={tableData} headers={headers}></Table>
     </div>
   </Layout>
   )
