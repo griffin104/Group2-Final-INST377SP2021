@@ -8,6 +8,7 @@ const GameStats = () => {
 
   let tableData = []
   let prefix
+  let table = ""
 
   const [gameInfo, setGameInfo] = useState(0)
   useEffect(() => {
@@ -52,11 +53,15 @@ const GameStats = () => {
   const headers = ["Date", "Opponent", "W/L", "Maryland Score", "Opposing Score", "OREB",
                     "DREB", "AST", "TO", "BLK", "STL", "PF", "FGM", "FGA", "3FGM", "3FGA", "FTM", "FTA"]
 
+  if (tableData.length) {
+    table = <Table table={tableData} headers={headers}></Table>
+  }
+
   return(
   <Layout>
     <SEO title="Game Stats" />
     <div id="tableContainer">
-      <Table table={tableData} headers={headers}></Table>
+      {table}
     </div>
   </Layout>
   )
