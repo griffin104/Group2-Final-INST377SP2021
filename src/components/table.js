@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
+import { Link } from "gatsby"
+
 const Table = ( {table, headers} ) => {
 
     const properties = Object.getOwnPropertyNames(table[0])
@@ -21,7 +23,6 @@ const Table = ( {table, headers} ) => {
             if (sortBy[1]) {
                 return (a[sortBy[0]] > b[sortBy[0]] ? 1 : -1)
             } else {
-                console.log("hi")
                 return (a[sortBy[0]] < b[sortBy[0]] ? 1 : -1)
             }
         })
@@ -33,16 +34,22 @@ const Table = ( {table, headers} ) => {
         <thead>
           <tr>
             {headers.map((header, i) => (
-                <th className="is-clickable" onClick={() => sortTable(properties[i])}>{header}</th>
+                <th className="is-clickable" onClick={() => sortTable(properties[i+1])}>{header}</th>
             ))}
           </tr>
         </thead>
         <tbody className="table-body">
           {displayedTable.map(row => (
              <tr>
-              {properties.map(prop => (
-                  <td>{row[prop]}</td>
-              ))}
+              {properties.map((prop, i) => {
+                  if (i) {
+                    return(
+                  <td>
+                  <Link to={`/game-stats?game=${row[properties[0]]}`}>{row[prop]}</Link>
+                  </td>
+                    )
+                  }
+                })}
             </tr> 
           ))}
         </tbody>
