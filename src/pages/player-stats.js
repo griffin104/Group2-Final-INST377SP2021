@@ -51,9 +51,16 @@ const headers = ["Player ID", "Games", "Games Started", "Minutes", "OREB",
 return(
 <Layout>
   <SEO title="Player Stats" />
-    <div id="tableContainer">
-      <Table table={tableData} headers={headers}></Table>
+  <div class="columns is-gapless">
+    <div class="column is-one-fifth">
+      Place Holder Players Table
     </div>
+    <div class="column is-four-fifths">
+      <div id="tableContainer">
+        <Table table={tableData} headers={headers}></Table>
+      </div>
+    </div>
+  </div>
     </Layout>
   )
 }
