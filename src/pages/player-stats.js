@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Table from "../components/table"
-// import Players from "../components/players"
+import Players from "../components/players"
 
 const PlayerStats = () => {
 
@@ -53,6 +53,7 @@ return(
   <SEO title="Player Stats" />
   <div class="columns is-gapless">
     <div class="column is-one-fifth">
+      {/* <Players table={tableData} headers={headers}></Players> */}
       Place Holder Players Table
     </div>
     <div class="column is-four-fifths">
