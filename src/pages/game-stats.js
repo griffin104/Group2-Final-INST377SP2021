@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 
 import Table from "../components/table"
 import Layout from "../components/layout"
@@ -10,42 +10,42 @@ const GameStats = ({ location }) => {
 
     let tableData = []
     let table = ""
-    let names = []
 
     const [playerInfo, setPlayerInfo] = useState([])
+    const [playerNames, setPlayerNames] = useState([])
 
-    useEffect(() => {
-        fetch(`/api/player-game-stats/games/${urlParams.get("game")}`)
-            .then(response => response.json()) // parse JSON from request
-            .then(resultData => {
-                setPlayerInfo(resultData.data)
-            })
+    useEffect(async () => {
+        const response = await fetch(`/api/player-game-stats/games/${urlParams.get("game")}`)
+        const json = await response.json()
+        setPlayerNames(getPlayerNames(json.data))
+        setPlayerInfo(json.data)
     }, [])
 
-
-    if (typeof playerInfo === 'object') {
-        playerInfo.forEach((player, i) => {
-            tableData.push({
-                player_game_stats_id: player.player_game_stats_id,
-                player_name: player.player_id,
-                minutes: player.minutes,
-                points: player.points,
-                off_reb: player.off_reb,
-                def_reb: player.def_reb,
-                assists: player.assists,
-                turnovers: player.turnovers,
-                blocks: player.blocks,
-                steals: player.steals,
-                fouls: player.fouls,
-                fg_made: player.fg_made,
-                fg_attempted: player.fg_attempted,
-                three_point_made: player.three_point_made,
-                three_point_attempted: player.three_point_attempted,
-                ft_made: player.ft_made,
-                ft_attempted: player.ft_attempted
+        if (typeof playerInfo === 'object') {
+            playerInfo.forEach((player, i) => {
+                console.log("push")
+                tableData.push({
+                    player_game_stats_id: player.player_game_stats_id,
+                    player_name: playerNames[i],
+                    minutes: player.minutes,
+                    points: player.points,
+                    off_reb: player.off_reb,
+                    def_reb: player.def_reb,
+                    assists: player.assists,
+                    turnovers: player.turnovers,
+                    blocks: player.blocks,
+                    steals: player.steals,
+                    fouls: player.fouls,
+                    fg_made: player.fg_made,
+                    fg_attempted: player.fg_attempted,
+                    three_point_made: player.three_point_made,
+                    three_point_attempted: player.three_point_attempted,
+                    ft_made: player.ft_made,
+                    ft_attempted: player.ft_attempted
+                })
             })
-        })
-    }
+        }
+
 
     async function getPlayerNames(players) {
         return Promise.all(players.map(player => {

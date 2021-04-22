@@ -10,6 +10,8 @@ const GameStats = () => {
   let prefix
   let table = ""
 
+  console.log(`${process.env.DOMAIN}/api/game-info`)
+
   const [gameInfo, setGameInfo] = useState([])
   useEffect(() => {
     fetch(`/api/game-info`)
@@ -17,11 +19,11 @@ const GameStats = () => {
       .then(resultData => {
         setGameInfo(resultData)
       }) 
-  }, [])
+  }, []) 
 
   if (typeof gameInfo === 'object') {
     gameInfo.forEach((game) => {
-      if (game.home_or_away == "Home") {
+      if (game.home_or_away === "Home") {
         prefix = "vs "
       } else {
         prefix = "at "
