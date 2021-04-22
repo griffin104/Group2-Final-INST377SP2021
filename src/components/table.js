@@ -6,7 +6,9 @@ import { Link } from "gatsby"
 const Table = ( {table, headers} ) => {
 
     const properties = Object.getOwnPropertyNames(table[0])
-    
+
+
+    // sortBy[{propertyBeingSorted}, {asc}]
     const [sortBy, setSortBy] = useState([properties[0], true])
     const [displayedTable, setDisplayedTable] = useState(table)
 

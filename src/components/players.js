@@ -1,7 +1,7 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 
-const Players = ({table}) => {
+const Players = ({players}) => {
 
     let properties
 

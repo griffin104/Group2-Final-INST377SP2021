@@ -10,7 +10,7 @@ const GameStats = () => {
   let prefix
   let table = ""
 
-  const [gameInfo, setGameInfo] = useState(0)
+  const [gameInfo, setGameInfo] = useState([])
   useEffect(() => {
     fetch(`/api/game-info`)
       .then(response => response.json()) // parse JSON from request
