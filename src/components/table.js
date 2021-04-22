@@ -1,29 +1,55 @@
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
+
+import { Link } from "gatsby"
 
 const Table = ( {table, headers} ) => {
 
-    let properties
+    const properties = Object.getOwnPropertyNames(table[0])
+    
+    const [sortBy, setSortBy] = useState([properties[0], true])
+    const [displayedTable, setDisplayedTable] = useState(table)
 
-    if (typeof table[0] === 'object') {
-        properties = Object.getOwnPropertyNames(table[0])
-    }
+    function sortTable(prop) {
+        if (prop == sortBy[0]) {
+            setSortBy(sortBy[0], !sortBy[1])
+        } else {
+            setSortBy([prop, true])
+        } 
+    } 
+
+    useEffect(() => {
+        table.sort((a, b) => {
+            if (sortBy[1]) {
+                return (a[sortBy[0]] > b[sortBy[0]] ? 1 : -1)
+            } else {
+                return (a[sortBy[0]] < b[sortBy[0]] ? 1 : -1)
+            }
+        })
+        setDisplayedTable(table.slice(0))
+    }, [sortBy])
 
     return (
         <table className="table is-striped is-bordered is-hoverable center has-text-centered">
         <thead>
           <tr>
-            {headers.map(header => (
-                <th>{header}</th>
+            {headers.map((header, i) => (
+                <th className="is-clickable" onClick={() => sortTable(properties[i+1])}>{header}</th>
             ))}
           </tr>
         </thead>
         <tbody className="table-body">
-          {table.map(row => (
+          {displayedTable.map(row => (
              <tr>
-              {properties.map(prop => (
-                  <td>{row[prop]}</td>
-              ))}
+              {properties.map((prop, i) => {
+                  if (i) {
+                    return(
+                  <td>
+                  <Link to={`/game-stats?game=${row[properties[0]]}`}>{row[prop]}</Link>
+                  </td>
+                    )
+                  }
+                })}
             </tr> 
           ))}
         </tbody>
@@ -34,6 +60,11 @@ const Table = ( {table, headers} ) => {
 Table.propTypes = {
     table: PropTypes.array,
     headers: PropTypes.array,
+}
+
+Table.defaultProps = {
+    table: [],
+    headers: []
 }
 
 export default Table

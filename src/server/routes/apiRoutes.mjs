@@ -423,6 +423,38 @@ router.get("/player-game-stats", async (req, res) => {
   }
 });
 
+router.get("/player-game-stats/players/:player_id", async (req, res) => {
+  try {
+    const stats = await db.PlayerGameStats.findAll({
+      where: {
+        player_id: req.params.player_id
+      }
+    });
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err)
+  }
+});
+
+router.get("/player-game-stats/games/:game_id", async (req, res) => {
+  try {
+    const stats = await db.PlayerGameStats.findAll({
+      where: {
+        game_id: req.params.game_id
+      }
+    });
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err)
+  }
+});
+
 router.get("/player-game-stats/:player_game_stats_id", async (req, res) => {
   try {
     const stats = await db.PlayerGameStats.findAll({
