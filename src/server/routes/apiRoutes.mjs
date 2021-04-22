@@ -3,6 +3,9 @@ import sequelize from "sequelize";
 
 import db from "../database/initializeDB.mjs";
 
+const jwt = require('jsonwebtoken');
+const app = express();
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -569,3 +572,15 @@ router.get("/custom", async (req, res) => {
 });
 
 export default router
+
+
+
+/////////////////// //////////// ///////////////////
+/////////////////// Authentication ///////////////////
+/////////////////// //////////// ///////////////////
+
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'Welcome to API'
+  });
+});
