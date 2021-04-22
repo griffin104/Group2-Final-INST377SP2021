@@ -44,10 +44,9 @@ if (typeof playerInfo === 'object') {
   })
 }
 
-const headers = ["Player ID", "Games", "Games Started", "Minutes", "Off. Rebounds",
-                "Def. Rebounds", "Assists", "Steals", "Blocks", "Turnovers", 
-                "Points", "FG", "FG Attempts", "3 Pt'r", "3 Pt'r Attempts", "Free Throws",
-                "Free Throw Attempts"]
+const headers = ["Player ID", "Games", "Games Started", "Minutes", "OREB",
+                "DERB", "AST", "STL", "BLK", "TO", "Pts", "FGM", "FGA", "3FGM", "3FGA",
+                 "FTM", "FTA"]
 
 return(
 <Layout>
