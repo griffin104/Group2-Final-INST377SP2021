@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react"
+import React, { useState, useEffect } from "react"
 
 import Table from "../components/table"
 import Layout from "../components/layout"
@@ -15,8 +15,9 @@ const GameStats = ({ location }) => {
     const [playerNames, setPlayerNames] = useState([])
 
     useEffect(async () => {
-        const response = await fetch(`/api/player-game-stats/games/${urlParams.get("game")}`)
+        const response = await fetch(`${process.env.DOMAIN}/api/player-game-stats/games/${urlParams.get("game")}`)
         const json = await response.json()
+        console.log(json.data)
         setPlayerNames(getPlayerNames(json.data))
         setPlayerInfo(json.data)
     }, [])
@@ -49,7 +50,7 @@ const GameStats = ({ location }) => {
 
     async function getPlayerNames(players) {
         return Promise.all(players.map(player => {
-            fetch(`/api/player-bios/${player.player_id}`)
+            fetch(`${process.env.DOMAIN}/api/player-bios/${player.player_id}`)
                 .then(response => response.json())
                 .then(json => {
                     console.log(json[0].first_name)
