@@ -5,10 +5,6 @@ const Players = ({players}) => {
 
     let properties
 
-    if (typeof table[0] === 'object') {
-        properties = Object.getOwnPropertyNames(table[0])
-    }
-
     return(
       <table className="table is-striped is-bordered is-hoverable center has-text-centered">
       {/* <thead>
@@ -79,7 +75,7 @@ const Players = ({players}) => {
 }
 
 Players.propTypes = {
-    table: PropTypes.array,
+    players: PropTypes.array,
 }
 
 export default Players

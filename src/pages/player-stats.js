@@ -56,9 +56,9 @@ const PlayerStats = () => {
   return (
     <Layout>
       <SEO title="Player Stats" />
-      <div class="columns is-gapless">
-        <div class="column is-one-fifth">
-          <Players></Players>
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <Players players=""></Players>
     </div>
         <div class="column">
           <div id="tableContainer">
