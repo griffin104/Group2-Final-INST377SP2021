@@ -6,7 +6,7 @@ import db from "../database/initializeDB.mjs";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    res.send("Welcome to our API!")
+  res.send("Welcome to our API!")
 })
 
 
@@ -15,31 +15,35 @@ router.get("/", (req, res) => {
 /////////////////// PLAYER BIOS ///////////////////
 /////////////////// /////////// ///////////////////
 router.get("/player-bios", async (req, res) => {
-    try {
-      const stats = await db.PlayerBios.findAll();
-      const reply =
-        stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error("Server error");
-    } 
-  });
+  try {
+    const stats = await db.PlayerBios.findAll();
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err)
+  }
+});
 
 
 router.get("/player-bios/:player_id", async (req, res) => {
   try {
-    //ENDPOINT to get ELEMENT by ID
-    res.send("No Endpoint")
+    const playerStats = await db.PlayerBios.findAll({
+      where: {
+        player_id: req.params.player_id
+      }
+    })
+    res.json(playerStats)
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
 router.post("/player-bios", async (req, res) => {
   try {
-      const newPlayerBio = await db.PlayerBios.create({
+    const newPlayerBio = await db.PlayerBios.create({
       player_number: req.body.player_number,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -55,7 +59,7 @@ router.post("/player-bios", async (req, res) => {
     res.json(newPlayerBio);
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 });
 
@@ -81,20 +85,24 @@ router.put("/player-bios", async (req, res) => {
         },
       }
     );
-    res.send("Successfully Updated"); 
+    res.send("Successfully Updated");
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 })
 
 router.delete("/player-bios/:player_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Endpoint")
+    await db.PlayerBios.destroy({
+      where: {
+        player_id: req.params.player_id
+      }
+    })
+    res.send("Row Successfully Deleted")
   } catch (err) {
-    console.error(err)
-    res.error("Server Error")
+    console.error(err);
+    res.status(400).send(err)
   }
 });
 
@@ -110,8 +118,8 @@ router.get("/player-stats", async (req, res) => {
     res.json(reply);
   } catch (err) {
     console.error(err);
-    res.error("Server error");
-  } 
+    res.status(400).send(err)
+  }
 });
 
 router.get("/player-stats/:player_stats_id", async (req, res) => {
@@ -124,7 +132,7 @@ router.get("/player-stats/:player_stats_id", async (req, res) => {
     res.json(playerStats)
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
@@ -152,7 +160,7 @@ router.post("/player-stats", async (req, res) => {
     res.json(newPlayerStats);
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 });
 
@@ -186,7 +194,7 @@ router.put("/player-stats", async (req, res) => {
     res.send("Successfully Updated");
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 })
 
@@ -200,7 +208,7 @@ router.delete("/player-stats/:player_stats_id", async (req, res) => {
     res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
@@ -209,26 +217,29 @@ router.delete("/player-stats/:player_stats_id", async (req, res) => {
 /////////////////// GAMES ///////////////////
 /////////////////// ///// ///////////////////
 router.get("/games", async (req, res) => {
-    try {
-      const stats = await db.Games.findAll();
-      const reply =
-        stats.length > 0 ? { data: stats } : { message: "no results found" };
-      res.json(reply); 
-      res.send("No Database")
-    } catch (err) {
-      console.error(err);
-      res.error("Server error");
-    } 
-  });
+  try {
+    const stats = await db.Games.findAll();
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err)
+  }
+});
 
 
 router.get("/games/:game_id", async (req, res) => {
   try {
-    // ENDPOINT to get ELEMENT by ID
-    res.send("No Database")
+    const playerStats = await db.Games.findAll({
+      where: {
+        game_id: req.params.game_id
+      }
+    })
+    res.json(playerStats)
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
@@ -242,11 +253,10 @@ router.post("/games", async (req, res) => {
       date_month: req.body.date_month,
       date_year: req.body.date_year
     });
-    res.json(newGame); 
-    res.send("No Database")
+    res.json(newGame);
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 });
 
@@ -268,20 +278,23 @@ router.put("/games", async (req, res) => {
       }
     );
     res.send("Successfully Updated");
-    res.send("No Database")
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 })
 
 router.delete("/games/:game_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Database")
+    await db.Games.destroy({
+      where: {
+        game_id: req.params.game_id
+      }
+    })
+    res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
@@ -297,17 +310,21 @@ router.get("/game-stats", async (req, res) => {
     res.json(reply);
   } catch (err) {
     console.error(err);
-    res.error("Server error");
-  } 
+    res.status(400).send(err)
+  }
 });
 
 router.get("/game-stats/:game_stats_id", async (req, res) => {
   try {
-    // ENDPOINT to get ELEMENT by ID
-    res.send("No Database")
+    const game_stats = await db.GameStats.findAll({
+      where: {
+        game_stats_id: req.params.game_stats_id
+      }
+    })
+    res.json(game_stats)
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
@@ -332,16 +349,16 @@ router.post("/game-stats", async (req, res) => {
       ft_made: req.body.ft_made,
       ft_attempted: req.body.ft_attempted
     });
-    res.json(newGameStats); 
+    res.json(newGameStats);
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 });
 
 router.put("/game-stats", async (req, res) => {
   try {
-    await db.Games.update(
+    await db.GameStats.update(
       {
         game_id: req.body.game_id,
         outcome: req.body.outcome,
@@ -366,22 +383,26 @@ router.put("/game-stats", async (req, res) => {
           game_stats_id: req.body.game_stats_id,
         },
       }
-    ); 
+    );
     res.send("Successfully Updated");
     res.send("No Database")
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 })
 
 router.delete("/game-stats/:game_stats_id", async (req, res) => {
   try {
-    //// Delete a row
-    res.send("No Endpoints")
+    await db.GameStats.destroy({
+      where: {
+        game_stats_id: req.params.game_stats_id
+      }
+    })
+    res.send("Record Deleted")
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
@@ -395,33 +416,40 @@ router.get("/games:game_id", async (req, res) => {
     // ENDPOINT to get ELEMENT by ID
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
-});
-
-router.delete("/games:game_id", async (req, res) => {
-  try {
-    //// Delete a row
-  }
-});
-/////////////////// /////////////////// ///////////////////
-/////////////////// Game Stats END POINTS ///////////////////
-/////////////////// /////////////////// ///////////////////
-router.get("/game_stats", async (req, res) => {
-  try {
-    const gameStats = await db.gameStats.findAll();
-    res.send(gameStats);
-  } catch (err) {
-    console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
-router.get("/game_stats:game_stats_id", async (req, res) => {
+router.get("/player-game-stats/players/:player_id", async (req, res) => {
   try {
-    // ENDPOINT to get ELEMENT by ID
+    const stats = await db.PlayerGameStats.findAll({
+      where: {
+        player_id: req.params.player_id
+      }
+    });
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
+  }
+});
+
+router.get("/player-game-stats/games/:game_id", async (req, res) => {
+  try {
+    const stats = await db.PlayerGameStats.findAll({
+      where: {
+        game_id: req.params.game_id
+      }
+    });
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err)
+  }
 });
 
 router.get("/player-game-stats/:player_game_stats_id", async (req, res) => {
@@ -434,7 +462,7 @@ router.get("/player-game-stats/:player_game_stats_id", async (req, res) => {
     res.json(stats)
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
@@ -462,7 +490,7 @@ router.post("/player-game-stats", async (req, res) => {
     res.json(newPlayerGameStats);
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 });
 
@@ -495,7 +523,7 @@ router.put("/player-game-stats", async (req, res) => {
     res.send("Successfully Updated");
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 })
 
@@ -509,13 +537,23 @@ router.delete("/player-game-stats/:player_game_stats_id", async (req, res) => {
     res.send("Row Successfully Deleted")
   } catch (err) {
     console.error(err);
-    res.error("Server Error");
+    res.status(400).send(err)
   }
 });
 
 /////////////////// //////////// ///////////////////
 /////////////////// Custom Query ///////////////////
 /////////////////// //////////// ///////////////////
+
+router.get("/game-info", async (req,res) => {
+  try {
+    const gameInfo = await db.sequelizeDB.query('SELECT * FROM games JOIN game_stats ON games.game_id = game_stats.game_id')
+    res.json(gameInfo[0])
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err)
+  }
+})
 
 router.get("/custom", async (req, res) => {
   try {
@@ -526,7 +564,7 @@ router.get("/custom", async (req, res) => {
     res.json(result);
   } catch (err) {
     console.error(err);
-    res.error("Server error");
+    res.status(400).send(err)
   }
 });
 

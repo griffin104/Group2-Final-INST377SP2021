@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 
 //All pages should use the format below 'const {page-name} = () => ({code})', followed by 'export default {page=name}
 const IndexPage = () => (
-
+  
   //<Layout> should surround everyone else in the page, if for any reason it doesn't, use an empty tag to surround everything
   <Layout>
     {/* Once we are inside a JSX element, commenents must look like this.
@@ -29,6 +29,7 @@ const IndexPage = () => (
       />
       <h1 className="title is-size-1 has-text-centered has-text-danger">MARYLAND TERRAPINS MEN'S BASKETBALL</h1>
     </div>
+    <script>getTable('/api/games')</script>
   </Layout>
 )
 

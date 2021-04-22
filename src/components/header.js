@@ -32,8 +32,12 @@ const Header = ({ siteTitle }) => {
 
     <div className="navbar-menu">
       <div className="navbar-start">
-        <Link className="navbar-item" to="/game-stats">
-          Game Stats
+        <Link className="navbar-item" to="/games">
+          Games
+        </Link>
+
+        <Link className="navbar-item" to="/players">
+          Players
         </Link>
 
         <Link className="navbar-item" to="/player-stats"> 
@@ -47,9 +51,6 @@ const Header = ({ siteTitle }) => {
           <div className="navbar-dropdown">
             <Link className="navbar-item" to="/schedule">
               Schedule
-            </Link>
-            <Link className="navbar-item" to="/news">
-              News
             </Link>
             <Link className="navbar-item" to="/about-us">
               About
