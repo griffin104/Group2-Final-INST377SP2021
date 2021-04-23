@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import { Link } from "gatsby"
 
-const Table = ({ table, headers, path, pathColumn }) => {
+const Table = ({ table, headers, path, pathColumn, pathState }) => {
 
     const properties = Object.getOwnPropertyNames(table[0])
 
@@ -39,6 +39,13 @@ const Table = ({ table, headers, path, pathColumn }) => {
                         <th className="is-clickable" onClick={() => sortTable(properties[i + 1])}>{header}</th>
                     ))}
                 </tr>
+                <tr>
+                    {headers.map((header) => (
+                        <th>
+                        <input className="input is-hovered is-small" size="1" type="text"></input>
+                        </th>
+                    ))}
+                </tr>
             </thead>
             <tbody className="table-body">
                 {displayedTable.map((row, i) => (
@@ -48,7 +55,8 @@ const Table = ({ table, headers, path, pathColumn }) => {
                                 if (j === pathColumn) {
                                     return (
                                         <td>
-                                            <Link to={`${path}${row[properties[0]]}`}>{row[prop]}</Link>
+                                            <Link to={`${path}${row[properties[0]]}`}
+                                                state={pathState(row, prop)}>{row[prop]}</Link>
                                         </td>
                                     )
                                 } else {
@@ -71,8 +79,9 @@ Table.propTypes = {
     table: PropTypes.array,
     headers: PropTypes.array,
     path: PropTypes.string,
-    pathColumn: PropTypes.number
-}
+    pathColumn: PropTypes.number,
+    pathState: PropTypes.func
+    }
 
 Table.defaultProps = {
     table: [],

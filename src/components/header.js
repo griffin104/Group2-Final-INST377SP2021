@@ -1,6 +1,7 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
 //There are many ways to define the component, there are probably pros and cons to each
 //but I'm not experienced enough to know that. Just keep this in mind if looking at other
@@ -19,8 +20,13 @@ const Header = ({ siteTitle }) => {
   return (
     <nav className="navbar mb-6" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
-      <Link className="navbar-item" to="/">
-        (Todo Logo)
+      <Link className="is-flex is-align-items-center" to="/">
+      <StaticImage
+        src="../images/logo.png"
+        alt="A UMD basketball background graphic"
+        height={70}
+      >
+      </StaticImage>
       </Link>
 
       <div role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">

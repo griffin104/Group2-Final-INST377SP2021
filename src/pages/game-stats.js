@@ -10,6 +10,7 @@ const GameStats = ({ location }) => {
 
     let tableData = []
     let table = ""
+    let heading = ""
     let route1
     let route2
 
@@ -21,13 +22,17 @@ const GameStats = ({ location }) => {
         route2 = `/api/player-bios/`
       }
 
+    if (location.state) {
+        heading = <div><p className="title is-1 has-text-centered">{location.state.title}</p>
+        <p className="subtitle is-3 has-text-centered">{location.state.subtitle}</p></div>
+    }
+
     const [playerInfo, setPlayerInfo] = useState([])
     const [playerNames, setPlayerNames] = useState([])
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(route1)
             const json = await response.json()
-            console.log(json.data)
             const names = await getPlayerNames(json.data)
             setPlayerNames(names)
             setPlayerInfo(json.data)
@@ -36,7 +41,6 @@ const GameStats = ({ location }) => {
     }, [])
 
     if (typeof playerInfo === 'object') {
-        console.log(playerNames)
         playerInfo.forEach((player, i) => {
             tableData.push({
                 player_game_stats_id: player.player_game_stats_id,
@@ -70,10 +74,8 @@ const GameStats = ({ location }) => {
     async function getPlayerName(player) {
         const response = await fetch(`${route2}${player.player_id}`)
         const json = await response.json()
-        console.log(`${json[0].first_name} ${json[0].last_name}`)
         return `${json[0].first_name} ${json[0].last_name}`
     }
-
 
     const headers = ["Name", "Minutes", "PTS", "OREB", "DREB", "AST", "TO", "BLK", "STL", "PF", "FGM", "FGA", "3FGM", "3FGA", "FTM", "FTA"]
 
@@ -84,6 +86,7 @@ const GameStats = ({ location }) => {
     return (
         <Layout>
             <SEO title="Game Stats" />
+            {heading}
             <section className="section">
                 <div className="columns is-centered">
                     <div className="column is-narrow">

@@ -59,11 +59,18 @@ const GameStats = () => {
     })
   }
 
+  function getGameInfo(row, prop) {
+    return ({
+        title: row.opposing_school,
+        subtitle: row.date
+    })
+}
+
   const headers = ["Date", "Opponent", "W/L", "Maryland Score", "Opposing Score", "OREB",
                     "DREB", "AST", "TO", "BLK", "STL", "PF", "FGM", "FGA", "3FGM", "3FGA", "FTM", "FTA"]
 
   if (tableData.length) {
-    table = <Table table={tableData} headers={headers} path="/game-stats/?game=" pathColumn={2}></Table>
+    table = <Table table={tableData} headers={headers} path="/game-stats/?game=" pathColumn={2} pathState={getGameInfo}></Table>
   }
 
   return(
