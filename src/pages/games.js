@@ -9,12 +9,18 @@ const GameStats = () => {
   let tableData = []
   let prefix
   let table = ""
+  let route
 
-  console.log(`${process.env.DOMAIN}/api/game-info`)
+  if (process.env.DOMAIN) {
+    route = `${process.env.DOMAIN}/api/game-info`
+  } else {
+    route = `/api/game-info`
+  }
+
 
   const [gameInfo, setGameInfo] = useState([])
   useEffect(() => {
-    fetch(`${process.env.DOMAIN}/api/game-info`)
+    fetch(route)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
         setGameInfo(resultData)
