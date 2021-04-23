@@ -9,19 +9,27 @@ const GameStats = () => {
   let tableData = []
   let prefix
   let table = ""
+  let route
 
-  const [gameInfo, setGameInfo] = useState(0)
+  if (process.env.DOMAIN) {
+    route = `${process.env.DOMAIN}/api/game-info`
+  } else {
+    route = `/api/game-info`
+  }
+
+
+  const [gameInfo, setGameInfo] = useState([])
   useEffect(() => {
-    fetch(`/api/game-info`)
+    fetch(route)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
         setGameInfo(resultData)
       }) 
-  }, [])
+  }, []) 
 
   if (typeof gameInfo === 'object') {
     gameInfo.forEach((game) => {
-      if (game.home_or_away == "Home") {
+      if (game.home_or_away === "Home") {
         prefix = "vs "
       } else {
         prefix = "at "
@@ -51,19 +59,30 @@ const GameStats = () => {
     })
   }
 
+  function getGameInfo(row, prop) {
+    return ({
+        title: row.opposing_school,
+        subtitle: row.date
+    })
+}
+
   const headers = ["Date", "Opponent", "W/L", "Maryland Score", "Opposing Score", "OREB",
                     "DREB", "AST", "TO", "BLK", "STL", "PF", "FGM", "FGA", "3FGM", "3FGA", "FTM", "FTA"]
 
   if (tableData.length) {
-    table = <Table table={tableData} headers={headers}></Table>
+    table = <Table table={tableData} headers={headers} path="/game-stats/?game=" pathColumn={2} pathState={getGameInfo}></Table>
   }
 
   return(
   <Layout>
     <SEO title="Games" />
-    <div id="tableContainer">
-      {table}
-    </div>
+    <section className="section">
+      <div className="columns is-centered">
+        <div className="column is-narrow">
+        {table}
+        </div>
+      </div>
+    </section>
   </Layout>
   )
 }

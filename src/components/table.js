@@ -3,21 +3,13 @@ import PropTypes from "prop-types"
 
 import { Link } from "gatsby"
 
-const Table = ( {table, headers} ) => {
+const Table = ({ table, headers, path, pathColumn, pathState }) => {
 
     const properties = Object.getOwnPropertyNames(table[0])
-    
+
+
+    // sortBy[{propertyBeingSorted}, {asc}]
     const [sortBy, setSortBy] = useState([properties[0], true])
-    const [displayedTable, setDisplayedTable] = useState(table)
-
-    function sortTable(prop) {
-        if (prop == sortBy[0]) {
-            setSortBy(sortBy[0], !sortBy[1])
-        } else {
-            setSortBy([prop, true])
-        } 
-    } 
-
     useEffect(() => {
         table.sort((a, b) => {
             if (sortBy[1]) {
@@ -29,42 +21,73 @@ const Table = ( {table, headers} ) => {
         setDisplayedTable(table.slice(0))
     }, [sortBy])
 
+    const [displayedTable, setDisplayedTable] = useState(table)
+
+    function sortTable(prop) {
+        if (prop === sortBy[0]) {
+            setSortBy(sortBy[0], !sortBy[1])
+        } else {
+            setSortBy([prop, true])
+        }
+    }
+
     return (
         <table className="table is-striped is-bordered is-hoverable center has-text-centered">
-        <thead>
-          <tr>
-            {headers.map((header, i) => (
-                <th className="is-clickable" onClick={() => sortTable(properties[i+1])}>{header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="table-body">
-          {displayedTable.map(row => (
-             <tr>
-              {properties.map((prop, i) => {
-                  if (i) {
-                    return(
-                  <td>
-                  <Link to={`/game-stats?game=${row[properties[0]]}`}>{row[prop]}</Link>
-                  </td>
-                    )
-                  }
-                })}
-            </tr> 
-          ))}
-        </tbody>
-      </table>
+            <thead>
+                <tr>
+                    {headers.map((header, i) => (
+                        <th className="is-clickable" onClick={() => sortTable(properties[i + 1])}>{header}</th>
+                    ))}
+                </tr>
+                <tr>
+                    {headers.map((header) => (
+                        <th>
+                        <input className="input is-hovered is-small" size="1" type="text"></input>
+                        </th>
+                    ))}
+                </tr>
+            </thead>
+            <tbody className="table-body">
+                {displayedTable.map((row, i) => (
+                    <tr>
+                        {properties.map((prop, j) => {
+                            if (j) {
+                                if (j === pathColumn) {
+                                    return (
+                                        <td>
+                                            <Link to={`${path}${row[properties[0]]}`}
+                                                state={pathState(row, prop)}>{row[prop]}</Link>
+                                        </td>
+                                    )
+                                } else {
+                                    return (
+                                        <td>{row[prop]}</td>
+                                    )
+                                }
+                            } else {
+                                return (null)
+                            }
+                        })}
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     )
 }
 
 Table.propTypes = {
     table: PropTypes.array,
     headers: PropTypes.array,
-}
+    path: PropTypes.string,
+    pathColumn: PropTypes.number,
+    pathState: PropTypes.func
+    }
 
 Table.defaultProps = {
     table: [],
-    headers: []
+    headers: [],
+    path: '',
+    pathColumn: null
 }
 
 export default Table

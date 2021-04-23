@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 
 const Players = () => (
   <Layout>
-    <SEO title="Player Stats" />
+    <SEO title="Players" />
     <p>TODO</p>
   </Layout>
 )

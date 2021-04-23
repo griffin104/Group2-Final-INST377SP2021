@@ -11,6 +11,10 @@
 th:hover {
     background-color: hsl(0, 0%, 98%);
 }
+
+.table-container {
+    margin: auto
+}
   
 
 $grey-light: #ECECEC;
@@ -26,5 +30,6 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
+$navbar-height: 5rem;
 
 @import "../../node_modules/bulma/bulma.sass";
