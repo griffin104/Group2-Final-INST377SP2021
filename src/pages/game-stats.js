@@ -10,12 +10,22 @@ const GameStats = ({ location }) => {
 
     let tableData = []
     let table = ""
+    let route1
+    let route2
+
+    if (process.env.DOMAIN) {
+        route1 = `${process.env.DOMAIN}/api/player-game-stats/games/${urlParams.get("game")}`
+        route2 = `${process.env.DOMAIN}/api/player-bios/`
+      } else {
+        route1 = `/api/player-game-stats/games/${urlParams.get("game")}`
+        route2 = `/api/player-bios/`
+      }
 
     const [playerInfo, setPlayerInfo] = useState([])
     const [playerNames, setPlayerNames] = useState([])
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch(`${process.env.DOMAIN}/api/player-game-stats/games/${urlParams.get("game")}`)
+            const response = await fetch(route1)
             const json = await response.json()
             console.log(json.data)
             const names = await getPlayerNames(json.data)
@@ -58,7 +68,7 @@ const GameStats = ({ location }) => {
     }
 
     async function getPlayerName(player) {
-        const response = await fetch(`${process.env.DOMAIN}/api/player-bios/${player.player_id}`)
+        const response = await fetch(`${route2}${player.player_id}`)
         const json = await response.json()
         console.log(`${json[0].first_name} ${json[0].last_name}`)
         return `${json[0].first_name} ${json[0].last_name}`

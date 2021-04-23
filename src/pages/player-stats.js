@@ -9,6 +9,14 @@ const PlayerStats = () => {
 
   let tableData = []
   let table = ''
+  let route
+
+  if (process.env.DOMAIN) {
+    route = `${process.env.DOMAIN}/api/player-stats`
+  } else {
+    route = `/api/player-stats`
+  }
+
 
   const [playerInfo, setplayerInfo] = useState([])
 
