@@ -3,8 +3,6 @@ import PropTypes from "prop-types"
 
 const Players = ({players}) => {
 
-    let properties
-
     return(
       <table className="table is-striped is-bordered is-hoverable center has-text-centered">
       {/* <thead>

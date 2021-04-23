@@ -57,15 +57,19 @@ const GameStats = () => {
                     "DREB", "AST", "TO", "BLK", "STL", "PF", "FGM", "FGA", "3FGM", "3FGA", "FTM", "FTA"]
 
   if (tableData.length) {
-    table = <Table table={tableData} headers={headers}></Table>
+    table = <Table table={tableData} headers={headers} path="/game-stats/?game=" pathColumn={2}></Table>
   }
 
   return(
   <Layout>
     <SEO title="Games" />
-    <div id="tableContainer">
-      {table}
-    </div>
+    <section className="section">
+      <div className="columns is-centered">
+        <div className="column is-narrow">
+        {table}
+        </div>
+      </div>
+    </section>
   </Layout>
   )
 }
