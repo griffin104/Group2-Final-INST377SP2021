@@ -21,7 +21,7 @@ const PlayerStats = () => {
   const [playerInfo, setplayerInfo] = useState([])
 
   useEffect(() => {
-    fetch(`${process.env.DOMAIN}/api/player-stats`)
+    fetch(route)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
         setplayerInfo(resultData.data)
