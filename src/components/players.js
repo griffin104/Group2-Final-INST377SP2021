@@ -22,49 +22,49 @@ const Players = ({players}) => {
         ))}
       </tbody> */}
 
-      <thead><tr><th>Players</th></tr></thead>
+      <thead><tr><th colspan="2">Players</th></tr></thead>
         <tbody className="table-body">
           <tr>
-            <td>JOSHUA TOMAIC</td> <td>ANDREW TERRELL</td>
+            <td><button class="button">JOSHUA TOMAIC</button></td> <td><button class="button">ANDREW TERRELL</button></td>
           </tr>
           <tr>
-            <td>ANTHONY COWAN JR.</td> <td>IVAN BENDER</td>
+            <td><button class="button">ANTHONY COWAN JR.</button></td> <td><button class="button">IVAN BENDER</button></td>
           </tr>
           <tr>
-            <td>AARON WIGGINS</td> <td>BRUNO FERNANDO</td>
+            <td><button class="button">AARON WIGGINS</button></td> <td><button class="button">BRUNO FERNANDO</button></td>
           </tr>
           <tr>
-            <td>RICKY LINDO JR.</td> <td>TRACE RAMSEY</td>
+            <td><button class="button">RICKY LINDO JR.</button></td> <td><button class="button">TRACE RAMSEY</button></td>
           </tr>
           <tr>
-            <td>ERIC ALAYA</td>
+            <td><button class="button">ERIC ALAYA</button></td>
           </tr>
           <tr>
-            <td>SERREL SMITH JR.</td>
+            <td><button class="button">SERREL SMITH JR.</button></td>
           </tr>
           <tr>
-            <td>DARRYL MORSELL</td>
+            <td><button class="button">DARRYL MORSELL</button></td>
           </tr>
           <tr>
-            <td>REESE MONA</td>
+            <td><button class="button">REESE MONA</button></td>
           </tr>
           <tr>
-            <td>HAKIM HART</td>
+            <td><button class="button">HAKIM HART</button></td>
           </tr>
           <tr>
-            <td>WILL CLARK</td>
+            <td><button class="button">WILL CLARK</button></td>
           </tr>
           <tr>
-            <td>CHOL MARIAL</td>
+            <td><button class="button">CHOL MARIAL</button></td>
           </tr>
           <tr>
-            <td>TRAVIS VALMON</td>
+            <td><button class="button">TRAVIS VALMON</button></td>
           </tr>
           <tr>
-            <td>DONTA SCOTT</td>
+            <td><button class="button">DONTA SCOTT</button></td>
           </tr>
           <tr>
-            <td>JALEN SMITH</td>
+            <td><button class="button">JALEN SMITH</button></td>
           </tr>
         </tbody>
 
