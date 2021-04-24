@@ -65,10 +65,10 @@ const PlayerStats = () => {
     <Layout>
       <SEO title="Player Stats" />
       <div class="columns">
-        <div class="column is-one-quarter">
+        <div class="column is-one-third">
           <PlayersTable players=""></PlayersTable>
     </div>
-        <div class="column">
+        <div class="column is-two-thirds">
           <div id="tableContainer">
            {table}
           </div>
