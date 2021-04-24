@@ -1,7 +1,7 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 
-const Players = ({players}) => {
+const PlayersTable = ({players}) => {
 
     return(
       <table className="table is-striped is-bordered is-hoverable center has-text-centered">
@@ -72,8 +72,8 @@ const Players = ({players}) => {
     )
 }
 
-Players.propTypes = {
+PlayersTable.propTypes = {
     players: PropTypes.array,
 }
 
-export default Players
+export default PlayersTable

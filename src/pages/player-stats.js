@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Table from "../components/table"
-import Players from "../components/players"
+import PlayersTable from "../components/playerstable"
 
 const PlayerStats = () => {
 
@@ -66,7 +66,7 @@ const PlayerStats = () => {
       <SEO title="Player Stats" />
       <div class="columns">
         <div class="column is-one-quarter">
-          <Players players=""></Players>
+          <PlayersTable players=""></PlayersTable>
     </div>
         <div class="column">
           <div id="tableContainer">

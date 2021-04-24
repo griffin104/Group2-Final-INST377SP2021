@@ -37,7 +37,7 @@ const GameStats = () => {
 
       tableData.push({
         game_id: game.game_id,
-        date: `${game.date_day}/${game.date_month}/${game.date_year}`,
+        date: `${game.date_year}/${game.date_month}/${game.date_day}`,
         opposing_school: prefix + game.opposing_school,
         outcome: game.outcome,
         maryland_score: game.maryland_score,

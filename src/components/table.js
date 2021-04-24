@@ -3,9 +3,11 @@ import PropTypes from "prop-types"
 
 import { Link } from "gatsby"
 
-const Table = ({ table, headers, path, pathColumn, pathState }) => {
+const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
 
     const properties = Object.getOwnPropertyNames(table[0])
+
+    let deleteColumn = ''
 
 
     // sortBy[{propertyBeingSorted}, {asc}]
@@ -31,6 +33,18 @@ const Table = ({ table, headers, path, pathColumn, pathState }) => {
         }
     }
 
+    function test(e) {
+        if (e.target.value) {
+            e.target.className = "input has-background-danger-light is-hovered is-small"
+        } else {
+            e.target.className = "input is-hovered is-small"
+        }
+    }
+
+    if (remove) {
+        deleteColumn = <td>Remove</td>
+    }
+
     return (
         <table className="table is-striped is-bordered is-hoverable center has-text-centered">
             <thead>
@@ -42,7 +56,8 @@ const Table = ({ table, headers, path, pathColumn, pathState }) => {
                 <tr>
                     {headers.map((header) => (
                         <th>
-                        <input className="input is-hovered is-small" size="1" type="text"></input>
+                        <input className="input is-hovered is-small" size="1" autocomplete= "off" 
+                            onChange={test} type="text" name={header}></input>
                         </th>
                     ))}
                 </tr>
@@ -68,8 +83,10 @@ const Table = ({ table, headers, path, pathColumn, pathState }) => {
                                 return (null)
                             }
                         })}
+                        {deleteColumn}
                     </tr>
                 ))}
+
             </tbody>
         </table>
     )
@@ -80,14 +97,17 @@ Table.propTypes = {
     headers: PropTypes.array,
     path: PropTypes.string,
     pathColumn: PropTypes.number,
-    pathState: PropTypes.func
+    pathState: PropTypes.func,
+    remove: PropTypes.bool
     }
 
 Table.defaultProps = {
     table: [],
     headers: [],
     path: '',
-    pathColumn: null
+    pathColumn: null,
+    pathState: function(row, prop){return ''},
+    remove: false
 }
 
 export default Table
