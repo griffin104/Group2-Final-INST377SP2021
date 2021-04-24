@@ -23,6 +23,8 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
         setDisplayedTable(table.slice(0))
     }, [sortBy])
 
+    const [visibleColumns, setVisibleColumns] = useState(() => {return headers.map(()=>(true))})
+
     const [displayedTable, setDisplayedTable] = useState(table)
 
     function sortTable(prop) {
@@ -41,32 +43,49 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
         }
     }
 
+    function toggleColumn(i, e) {
+        let ans = [...visibleColumns]
+        ans[i] = !ans[i]
+        setVisibleColumns(ans)
+    }
+
     if (remove) {
         deleteColumn = <td>Remove</td>
     }
 
     return (
+        <>
+        {headers.map((header, i) => {
+            return (
+            <label className="checkbox mr-5">
+                {header}
+                <input type="checkbox" name="header" checked={visibleColumns[i]} onChange={(e) => toggleColumn(i, e)}/>
+            </label>)
+        })}
         <table className="table is-striped is-bordered is-hoverable center has-text-centered">
             <thead>
                 <tr>
-                    {headers.map((header, i) => (
-                        <th className="is-clickable" onClick={() => sortTable(properties[i + 1])}>{header}</th>
-                    ))}
+                    {headers.map((header, i) => {
+                        if (visibleColumns[i]) return <th className="is-clickable" onClick={() => sortTable(properties[i + 1])}>{header}</th>
+                        return ''
+                    })}
                 </tr>
                 <tr>
-                    {headers.map((header) => (
-                        <th>
+                    {headers.map((header, i) => {
+                        if (visibleColumns[i]) {
+                        return (<th>
                         <input className="input is-hovered is-small" size="1" autocomplete= "off" 
                             onChange={test} type="text" name={header}></input>
-                        </th>
-                    ))}
+                        </th>)
+                        } return ''
+                    })}
                 </tr>
             </thead>
             <tbody className="table-body">
                 {displayedTable.map((row, i) => (
                     <tr>
                         {properties.map((prop, j) => {
-                            if (j) {
+                            if (j &&  visibleColumns[j-1]) {
                                 if (j === pathColumn) {
                                     return (
                                         <td>
@@ -80,7 +99,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
                                     )
                                 }
                             } else {
-                                return (null)
+                                return ''
                             }
                         })}
                         {deleteColumn}
@@ -89,6 +108,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
 
             </tbody>
         </table>
+        </>
     )
 }
 
