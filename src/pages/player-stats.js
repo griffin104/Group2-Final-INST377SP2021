@@ -17,8 +17,8 @@ const PlayerStats = () => {
     route = `/api/player-stats`
   }
 
-
   const [playerInfo, setplayerInfo] = useState([])
+  const [playerId, setPlayerId] = useState(1)
 
   useEffect(() => {
     fetch(route)
@@ -52,6 +52,11 @@ const PlayerStats = () => {
     })
   }
 
+  function getPlayerId(state) {
+    setPlayerId(state)
+    console.log("Current state: " + state)
+  }
+
   const headers = ["Games", "Games Started", "Minutes", "OREB",
     "DERB", "AST", "STL", "BLK", "TO", "Pts", "FGM", "FGA", "3FGM", "3FGA",
     "FTM", "FTA"]
@@ -65,7 +70,7 @@ const PlayerStats = () => {
       <SEO title="Player Stats" />
       <div class="columns">
         <div class="column is-one-third">
-          <PlayersTable></PlayersTable>
+          <PlayersTable parentCallback={getPlayerId}></PlayersTable>
     </div>
         <div class="column is-two-thirds">
           <div id="tableContainer">

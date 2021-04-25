@@ -74,7 +74,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
                     {headers.map((header, i) => {
                         if (visibleColumns[i]) {
                         return (<th>
-                        <input className="input is-hovered is-small" size="1" autocomplete= "off" 
+                        <input className="input is-hovered is-small" size="1" autoComplete= "off" 
                             onChange={test} type="text" name={header}></input>
                         </th>)
                         } return ''
