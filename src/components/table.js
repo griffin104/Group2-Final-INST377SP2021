@@ -66,7 +66,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
             <thead>
                 <tr>
                     {headers.map((header, i) => {
-                        if (visibleColumns[i]) return <th className="is-clickable" onClick={() => sortTable(properties[i + 1])}>{header}</th>
+                        if (visibleColumns[i]) return <th className="is-clickable is-hoverable-cell" onClick={() => sortTable(properties[i + 1])}>{header}</th>
                         return ''
                     })}
                 </tr>
@@ -85,7 +85,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
                 {displayedTable.map((row, i) => (
                     <tr>
                         {properties.map((prop, j) => {
-                            if (j &&  visibleColumns[j-1]) {
+                            if (visibleColumns[j-1]) {
                                 if (j === pathColumn) {
                                     return (
                                         <td>

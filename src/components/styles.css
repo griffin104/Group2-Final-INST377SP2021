@@ -3,7 +3,7 @@
   display: flex;
   align-items: center; }
 
-th:hover {
+.is-hoverable-cell:hover {
   background-color: #fafafa; }
 
 .table-container {

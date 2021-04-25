@@ -28,7 +28,6 @@ const PlayerStats = () => {
       })
   }, [])
 
-
   if (typeof playerInfo === 'object') {
     playerInfo.forEach((player) => {
       tableData.push({
@@ -66,7 +65,7 @@ const PlayerStats = () => {
       <SEO title="Player Stats" />
       <div class="columns">
         <div class="column is-one-third">
-          <PlayersTable players=""></PlayersTable>
+          <PlayersTable></PlayersTable>
     </div>
         <div class="column is-two-thirds">
           <div id="tableContainer">
