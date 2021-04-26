@@ -5,7 +5,7 @@ const PlayersTable = ({ parentCallback }) => {
 
     const [activePlayer, setActivePlayer] = useState(1)
 
-    const playerNames = ["EA", "IB", "WC", "ACjr", "BF", "RLjr", "RM", "DM", "TR", "JS", "SSjr", "AT", "JT", "TV", "AW"]
+    const playerNames = ["EA", "IB", "WC", "ACjr", "BF", "RLjr", "RM", "DM", "TR", "JS", "SSjr", "AT", "JT", "TV", "AW", "test"]
 
     function playerClick(e) {
       setActivePlayer(e.target.id)
@@ -30,7 +30,7 @@ const PlayersTable = ({ parentCallback }) => {
                   <td className="is-clickable is-hoverable-cell" role="presentation" id={i+2} onClick={playerClick}>{playerNames[i+1]}</td>
                 </tr>)
               } else {
-                return ''
+                return <tr></tr>
               }
           })}
         </tbody>
