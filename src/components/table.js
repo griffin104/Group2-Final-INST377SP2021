@@ -1,43 +1,41 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 
 import { Link } from "gatsby"
 
-const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
+const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
 
     const properties = Object.getOwnPropertyNames(table[0])
 
     let deleteColumn = ''
+    let addRow = ''
 
     const [visibleColumns, setVisibleColumns] = useState(() => {return headers.map(()=>(true))})
-
-    const [displayedTable, setDisplayedTable] = useState(table)
 
     // sortBy[{propertyBeingSorted}, {asc}]
     const [sortBy, setSortBy] = useState([properties[0], true])
 
     const [filter, setFilter] = useState(() => {return headers.map(() => (''))})
-
-    useEffect(() => {
-        table.sort((a, b) => {
-            if (sortBy[1]) {
-                return (a[sortBy[0]] > b[sortBy[0]] ? 1 : -1)
-            } else {
-                return (a[sortBy[0]] < b[sortBy[0]] ? 1 : -1)
-            }
-        })
-        setDisplayedTable(table.slice(0))
-    }, [sortBy])
-
+ 
     function sortTable(prop) {
         if (prop === sortBy[0]) {
+            table.sort((a, b) => {
+                if (!sortBy[1]) {
+                    return (a[sortBy[0]] > b[sortBy[0]] ? 1 : -1)
+                } else {
+                    return (a[sortBy[0]] < b[sortBy[0]] ? 1 : -1)
+                }
+            })
             setSortBy(sortBy[0], !sortBy[1])
         } else {
+            table.sort((a, b) => {
+                    return (a[prop] > b[prop] ? 1 : -1)
+            })
             setSortBy([prop, true])
         }
     }
 
-    function test(e) {
+    function filterRows(e) {
         let id = parseInt(e.target.name)
         let newFilter = [...filter]
         newFilter[id] = e.target.value
@@ -53,11 +51,14 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
         let ans = true
         properties.forEach((prop, i) => {
             if (filter[i-1] && !row[prop].toString().toUpperCase().includes(filter[i-1].toUpperCase())) {
-                //console.log(`${filter[i-1]} is not in ${row[prop]}`)
                 ans = false
             } 
         })
         return ans
+    }
+
+    function test(e) {
+        console.log(e.target.textContent)
     }
 
     function toggleColumn(i, e) {
@@ -72,8 +73,18 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
         setVisibleColumns(newColumns)
     }
 
-    if (remove) {
-        deleteColumn = <td>Remove</td>
+    function deleteRow(e) {
+        console.log(e)
+        if(window.confirm("Are you sure you want to delete this row?")) {
+            console.log("Deleted")
+        } else {
+            console.log("Not Deleted")
+        }
+    }
+
+    if (admin) {
+        deleteColumn = <td><button className="button has-background-danger" onClick={deleteRow}>Delete</button></td>
+        addRow = <tr className="has-background-success is-clickable">Add Row..</tr>
     }
 
     return (
@@ -89,7 +100,12 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
             <thead>
                 <tr>
                     {headers.map((header, i) => {
-                        if (visibleColumns[i]) return <th className="is-clickable is-hoverable-cell" onClick={() => sortTable(properties[i + 1])}>{header}</th>
+                        if (visibleColumns[i]) return <th className="is-clickable is-hoverable-cell" onClick={() => {
+                            if (admin) {
+                                sortTable(properties[i])
+                            } else {
+                                sortTable(properties[i+1])
+                            }}}>{header}</th>
                         return ''
                     })}
                 </tr>
@@ -98,18 +114,18 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
                         if (visibleColumns[i]) {
                         return (<th>
                         <input className="input is-hovered is-small" size="1" autoComplete= "off" 
-                            onChange={test} type="text" name={i}></input>
+                            onChange={filterRows} type="text" name={i}></input>
                         </th>)
                         } return ''
                     })}
                 </tr>
             </thead>
             <tbody className="table-body">
-                {displayedTable.map((row, i) => {
+                {table.map((row, i) => {
                     if (checkFilter(row)) {
                     return(<tr>
                         {properties.map((prop, j) => {
-                            if (visibleColumns[j-1]) {
+                            if (visibleColumns[j-1] || (admin && j==0)) {
                                 if (j === pathColumn) {
                                     return (
                                         <td>
@@ -119,7 +135,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
                                     )
                                 } else {
                                     return (
-                                        <td>{row[prop]}</td>
+                                        <td contentEditable={admin} onInput={test} suppressContentEditableWarning={true}>{row[prop]}</td>
                                     )
                                 }
                             } else {
@@ -130,7 +146,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, remove }) => {
                     </tr>
                 )}
                 })}
-
+                {addRow}
             </tbody>
         </table>
         </>
@@ -143,7 +159,7 @@ Table.propTypes = {
     path: PropTypes.string,
     pathColumn: PropTypes.number,
     pathState: PropTypes.func,
-    remove: PropTypes.bool
+    admin: PropTypes.bool
     }
 
 Table.defaultProps = {
@@ -152,7 +168,7 @@ Table.defaultProps = {
     path: '',
     pathColumn: null,
     pathState: function(row, prop){return ''},
-    remove: false
+    admin: false
 }
 
 export default Table

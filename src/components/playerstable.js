@@ -5,7 +5,11 @@ const PlayersTable = ({ parentCallback }) => {
 
     const [activePlayer, setActivePlayer] = useState(1)
 
-    const playerNames = ["EA", "IB", "WC", "ACjr", "BF", "RLjr", "RM", "DM", "TR", "JS", "SSjr", "AT", "JT", "TV", "AW", "test"]
+    const playerNames = ["ERIC AYALA (18-19)", "IVAN BENDER (18-19)", "WILL CLARK (18-19)", "ANTHONY COWAN JR (18-19)", "BRUNO FERNANDO (18-19)", 
+    "RICKY LINDO JR (18-19)", "REESE MONA (18-19)", "DARRYL MORSELL (18-19)", "TRACE RAMSEY (18-19)", "JALEN SMITH (18-19)", "SERREL SMITH JR (18-19)", 
+    "ANDREW TERRELL (18-19)", "JOSHUA TOMAIC (18-19)", "TRAVIS VALMON (18-19)", "AARON WIGGINS (18-19)", "ERIC AYALA (19-20)", "WILL CLARK (19-20)", 
+    "ANTHONY COWAN JR (19-20)", "HAKIM HART (19-20)", "RICKY LINDO JR (19-20)", "CHOL MARIAL (19-20)", "REESE MONA (19-20)", "DARRYL MORSELL (19-20)", 
+    "DONTA SCOTT (19-20)", "JALEN SMITH (19-20)", "SERREL SMITH JR (19-20)", "JOSHUA TOMAIC (19-20)", "TRAVIS VALMON (19-20)", "AARON WIGGINS (19-20)"]
 
     function playerClick(e) {
       setActivePlayer(e.target.id)
