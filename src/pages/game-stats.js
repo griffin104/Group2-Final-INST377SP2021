@@ -6,6 +6,7 @@ import SEO from "../components/seo"
 
 const GameStats = ({ location }) => {
 
+    
     const urlParams = new URLSearchParams(location.search)
 
     let tableData = []
@@ -33,8 +34,7 @@ const GameStats = ({ location }) => {
         async function fetchData() {
             const response = await fetch(route1)
             const json = await response.json()
-            const names = await getPlayerNames(json.data)
-            setPlayerNames(names)
+            setPlayerNames(await getPlayerNames(json.data))
             setPlayerInfo(json.data)
         }
         fetchData()
@@ -43,8 +43,8 @@ const GameStats = ({ location }) => {
     if (typeof playerInfo === 'object') {
         playerInfo.forEach((player, i) => {
             tableData.push({
-                player_game_stats_id: player.player_game_stats_id,
-                player_id: playerNames[i],
+                player_id: player.player_id,
+                player_name: playerNames[i],
                 minutes: player.minutes,
                 points: player.points,
                 off_reb: player.off_reb,
@@ -65,10 +65,9 @@ const GameStats = ({ location }) => {
     }
 
     async function getPlayerNames(players) {
-        const ans = await Promise.all(players.map((player) => {
+        return Promise.all(players.map((player) => {
             return getPlayerName(player)
         }))
-        return ans
     }
 
     async function getPlayerName(player) {
@@ -80,7 +79,7 @@ const GameStats = ({ location }) => {
     const headers = ["Name", "Minutes", "PTS", "OREB", "DREB", "AST", "TO", "BLK", "STL", "PF", "FGM", "FGA", "3FGM", "3FGA", "FTM", "FTA"]
 
     if (tableData.length) {
-        table = <Table table={tableData} headers={headers}></Table>
+        table = <Table table={tableData} headers={headers} path="/player-stats/?player=" pathColumn={1}></Table>
     }
 
     return (

@@ -8,7 +8,7 @@
     align-items: center;
 }
 
-th:hover {
+.is-hoverable-cell:hover {
     background-color: hsl(0, 0%, 98%);
 }
 
@@ -20,6 +20,7 @@ th:hover {
 $grey-light: #ECECEC;
 $grey-lighter: #F5F5F5;
 $red: #D20A0A;
+$green: #90EE90;
 
 $family-sans-serif: 'Roboto', sans-serif;
 $widescreen-enabled: false;
