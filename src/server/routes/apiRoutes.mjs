@@ -26,7 +26,6 @@ router.get("/player-bios", async (req, res) => {
   }
 });
 
-
 router.get("/player-bios/:player_id", async (req, res) => {
   try {
     const playerStats = await db.PlayerBios.findAll({
@@ -116,20 +115,6 @@ router.get("/player-stats", async (req, res) => {
     const reply =
       stats.length > 0 ? { data: stats } : { message: "no results found" };
     res.json(reply);
-  } catch (err) {
-    console.error(err);
-    res.status(400).send(err)
-  }
-});
-
-router.get("/player-stats/:player_stats_id", async (req, res) => {
-  try {
-    const playerStats = await db.PlayerStats.findAll({
-      where: {
-        player_stats_id: req.params.player_stats_id
-      }
-    })
-    res.json(playerStats)
   } catch (err) {
     console.error(err);
     res.status(400).send(err)
@@ -229,20 +214,6 @@ router.get("/games", async (req, res) => {
 });
 
 
-router.get("/games/:game_id", async (req, res) => {
-  try {
-    const playerStats = await db.Games.findAll({
-      where: {
-        game_id: req.params.game_id
-      }
-    })
-    res.json(playerStats)
-  } catch (err) {
-    console.error(err);
-    res.status(400).send(err)
-  }
-});
-
 router.post("/games", async (req, res) => {
   try {
     const newGame = await db.Games.create({
@@ -308,20 +279,6 @@ router.get("/game-stats", async (req, res) => {
     const reply =
       stats.length > 0 ? { data: stats } : { message: "no results found" };
     res.json(reply);
-  } catch (err) {
-    console.error(err);
-    res.status(400).send(err)
-  }
-});
-
-router.get("/game-stats/:game_stats_id", async (req, res) => {
-  try {
-    const game_stats = await db.GameStats.findAll({
-      where: {
-        game_stats_id: req.params.game_stats_id
-      }
-    })
-    res.json(game_stats)
   } catch (err) {
     console.error(err);
     res.status(400).send(err)
@@ -455,20 +412,6 @@ router.get("/player-game-stats/games/:game_id", async (req, res) => {
   }
 });
 
-router.get("/player-game-stats/:player_game_stats_id", async (req, res) => {
-  try {
-    const stats = await db.PlayerGameStats.findAll({
-      where: {
-        player_game_stats_id: req.params.player_game_stats_id
-      }
-    })
-    res.json(stats)
-  } catch (err) {
-    console.error(err);
-    res.status(400).send(err)
-  }
-});
-
 router.post("/player-game-stats", async (req, res) => {
   try {
     const newPlayerGameStats = await db.PlayerGameStats.create({
@@ -557,18 +500,5 @@ router.get("/game-info", async (req,res) => {
     res.status(400).send(err)
   }
 })
-
-router.get("/custom", async (req, res) => {
-  try {
-    const result = await db.sequelizeDB.query(req.body.query, {
-      type: sequelize.QueryTypes.SELECT,
-    });
-    console.log("Result: ", result);
-    res.json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(400).send(err)
-  }
-});
 
 export default router

@@ -79,7 +79,7 @@ const GameStats = ({ location }) => {
     const headers = ["Name", "Minutes", "PTS", "OREB", "DREB", "AST", "TO", "BLK", "STL", "PF", "FGM", "FGA", "3FGM", "3FGA", "FTM", "FTA"]
 
     if (tableData.length) {
-        table = <Table table={tableData} headers={headers} path="/players/?player=" pathColumn={1}></Table>
+        table = <Table table={tableData} headers={headers} path="/player-stats/?player=" pathColumn={1}></Table>
     }
 
     return (

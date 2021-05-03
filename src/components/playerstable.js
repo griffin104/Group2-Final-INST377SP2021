@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
-const PlayersTable = ({ parentCallback }) => {
+const PlayersTable = ({ currentId, parentCallback }) => {
 
-    const [activePlayer, setActivePlayer] = useState(1)
+    const [activePlayer, setActivePlayer] = useState(currentId)
 
     const playerNames = ["ERIC AYALA (18-19)", "IVAN BENDER (18-19)", "WILL CLARK (18-19)", "ANTHONY COWAN JR (18-19)", "BRUNO FERNANDO (18-19)", 
     "RICKY LINDO JR (18-19)", "REESE MONA (18-19)", "DARRYL MORSELL (18-19)", "TRACE RAMSEY (18-19)", "JALEN SMITH (18-19)", "SERREL SMITH JR (18-19)", 
@@ -30,8 +30,8 @@ const PlayersTable = ({ parentCallback }) => {
             {playerNames.map((name, i) => {
               if (!(i%2)) {
                 return (<tr>
-                  <td className="is-clickable is-hoverable-cell" role="presentation" id={i+1} onClick={playerClick}>{playerNames[i]}</td> 
-                  <td className="is-clickable is-hoverable-cell" role="presentation" id={i+2} onClick={playerClick}>{playerNames[i+1]}</td>
+                  <td className={`is-clickable is-hoverable-cell ${i+1 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+1} onClick={playerClick}>{playerNames[i]}</td> 
+                  <td className={`is-clickable is-hoverable-cell ${i+2 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+2} onClick={playerClick}>{playerNames[i+1]}</td>
                 </tr>)
               } else {
                 return <tr></tr>
@@ -43,10 +43,12 @@ const PlayersTable = ({ parentCallback }) => {
 }
 
 PlayersTable.propTypes = {
+    currentId: PropTypes.number,
     parentCallback: PropTypes.func,
 }
 
 PlayersTable.defaultProps = {
+    currentId: 1,
     parentCallback: function() {return null}
 }
 

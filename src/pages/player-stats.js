@@ -5,20 +5,22 @@ import SEO from "../components/seo"
 import Table from "../components/table"
 import PlayersTable from "../components/playerstable"
 
-const PlayerStats = () => {
+const PlayerStats = ({ location }) => {
 
+  let urlParams = new URLSearchParams(location.search)
   let tableData = []
   let table = ''
   let route
 
-  if (process.env.DOMAIN) {
-    route = `${process.env.DOMAIN}/api/player-stats`
-  } else {
-    route = `/api/player-stats`
-  }
-
   const [playerInfo, setplayerInfo] = useState([])
-  const [playerId, setPlayerId] = useState(1)
+  const [playerId, setPlayerId] = useState(parseInt(urlParams.get("player")) || 1)
+
+
+  if (process.env.DOMAIN) {
+    route = `${process.env.DOMAIN}/api/player-game-stats/players/${playerId}`
+  } else {
+    route = `/api/player-game-stats/player/${playerId}`
+  }
 
   useEffect(() => {
     fetch(route)
@@ -26,22 +28,20 @@ const PlayerStats = () => {
       .then(resultData => {
         setplayerInfo(resultData.data)
       })
-  }, [])
+  }, [playerId])
 
   if (typeof playerInfo === 'object') {
     playerInfo.forEach((player) => {
       tableData.push({
-        player_id: player.player_id,
-        games: player.games,
-        games_started: player.games_started,
+        player_game_stat_id: player.player_game_stat_id,
         minutes: player.minutes,
+        points: player.points,
         off_reb: player.off_reb,
         def_reb: player.def_reb,
         assists: player.assists,
         steals: player.steals,
         blocks: player.blocks,
         turnovers: player.turnovers,
-        points: player.points,
         fg_made: player.fg_made,
         fg_attempted: player.fg_attempted,
         three_point_made: player.three_point_made,
@@ -54,11 +54,10 @@ const PlayerStats = () => {
 
   function getPlayerId(state) {
     setPlayerId(state)
-    console.log("Current state: " + state)
   }
 
-  const headers = ["Games", "Games Started", "Minutes", "OREB",
-    "DERB", "AST", "STL", "BLK", "TO", "Pts", "FGM", "FGA", "3FGM", "3FGA",
+  const headers = ["MIN", "PTS", "OREB",
+    "DERB", "AST", "STL", "BLK", "TO",  "FGM", "FGA", "3FGM", "3FGA",
     "FTM", "FTA"]
 
   if (tableData.length) {
@@ -68,11 +67,11 @@ const PlayerStats = () => {
   return (
     <Layout>
       <SEO title="Player Stats" />
-      <div class="columns">
-        <div class="column is-one-third">
-          <PlayersTable parentCallback={getPlayerId}></PlayersTable>
+      <div className="columns">
+        <div className="column is-one-third">
+          <PlayersTable currentId={playerId} parentCallback={getPlayerId}></PlayersTable>
     </div>
-        <div class="column is-two-thirds">
+        <div className="column is-two-thirds">
           <div id="tableContainer">
            {table}
           </div>
