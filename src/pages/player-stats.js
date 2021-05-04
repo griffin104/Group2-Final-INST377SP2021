@@ -19,7 +19,7 @@ const PlayerStats = ({ location }) => {
   if (process.env.DOMAIN) {
     route = `${process.env.DOMAIN}/api/player-game-stats/players/${playerId}`
   } else {
-    route = `/api/player-game-stats/player/${playerId}`
+    route = `/api/player-game-stats/players/${playerId}`
   }
 
   useEffect(() => {
