@@ -27,7 +27,7 @@ const Players = () => {
         <PlayersTable currentId={playerId} parentCallback={getPlayerId}></PlayersTable>
       </div>
       <div className="column">
-        <PlayerBio image="../../anthonycowan.png" number="1" position="Guard" weight="180" height="6'0"></PlayerBio>
+        <PlayerBio name="Anthony Cowan Jr." image="../../anthonycowan.png" number="1" position="Guard" weight="180" height="6'0"></PlayerBio>
       </div>
     </div>
   </Layout>
