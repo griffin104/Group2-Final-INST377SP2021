@@ -7,11 +7,20 @@
     display: flex;
     align-items: center;
 }
+
+.is-hoverable-cell:hover {
+    background-color: hsl(0, 0%, 98%);
+}
+
+.table-container {
+    margin: auto
+}
   
 
 $grey-light: #ECECEC;
 $grey-lighter: #F5F5F5;
 $red: #D20A0A;
+$green: #90EE90;
 
 $family-sans-serif: 'Roboto', sans-serif;
 $widescreen-enabled: false;
@@ -22,5 +31,6 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
+$navbar-height: 5rem;
 
 @import "../../node_modules/bulma/bulma.sass";

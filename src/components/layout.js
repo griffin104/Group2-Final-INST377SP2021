@@ -9,8 +9,6 @@ import "./styles.css"
 const Layout = ({ children }) => {
 
   //If you want to do any normal JS, do it before the return
-  //Additionally, this console.log() helps with debugging and getting a better understanding of props
-  console.log({children})
 
   return (
     //JSX elements need a parent, empty tags are the way to go if you have nothing else to surround it with
