@@ -29,11 +29,16 @@ const PlayersTable = ({ currentId, parentCallback }) => {
         <tbody className="table-body">
             {playerNames.map((name, i) => {
               if (!(i%2)) {
-
-                return (<tr>
-                  <td className={`is-clickable is-hoverable-cell ${i+1 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+1} onClick={playerClick}>{playerNames[i]}</td> 
-                  <td className={`is-clickable is-hoverable-cell ${i+2 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+2} onClick={playerClick}>{playerNames[i+1]}</td>
-                </tr>)
+                if(playerNames[i+1]) {
+                  return (<tr>
+                    <td className={`is-clickable is-hoverable-cell ${i+1 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+1} onClick={playerClick}>{playerNames[i]}</td> 
+                    <td className={`is-clickable is-hoverable-cell ${i+2 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+2} onClick={playerClick}>{playerNames[i+1]}</td>
+                  </tr>)
+                } else {
+                  return (<tr>
+                    <td className={`is-clickable is-hoverable-cell ${i+1 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+1} onClick={playerClick}>{playerNames[i]}</td> 
+                  </tr>)
+                }
               } else {
                 return <tr></tr>
               }
