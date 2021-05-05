@@ -12,7 +12,7 @@ const PlayerStats = ({ location }) => {
   let table = ''
   let route
 
-  const [playerInfo, setplayerInfo] = useState([])
+  const [playerInfo, setPlayerInfo] = useState([])
   const [playerId, setPlayerId] = useState(parseInt(urlParams.get("player")) || 1)
 
 
@@ -24,9 +24,9 @@ const PlayerStats = ({ location }) => {
 
   useEffect(() => {
     fetch(route)
-      .then(response => response.json()) // parse JSON from request
+      .then(response => response.json())
       .then(resultData => {
-        setplayerInfo(resultData.data)
+        setPlayerInfo(resultData.data)
       })
   }, [playerId])
 

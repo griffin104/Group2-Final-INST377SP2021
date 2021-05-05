@@ -7,9 +7,27 @@ import PlayerBio from "../components/playerbio"
 
 const Players = () => {
 
-  const [playerId, setPlayerId] = useState(1)
+  let route
 
-  //Fetch player information
+  const [playerId, setPlayerId] = useState(1)
+  const [playerInfo, setPlayerInfo] = useState([])
+
+  if (process.env.DOMAIN) {
+    route = `${process.env.DOMAIN}/api/player-bios/${playerId}`
+  } else {
+    route = `/api/player-bios/${playerId}`
+  }
+
+  useEffect(() => {
+
+    fetch(route)
+      .then(response => response.json())
+      .then(resultData => {
+        console.log(resultData[0])
+        console.log(route)
+        setPlayerInfo(resultData[0])
+      })
+  }, [playerId])
 
   //Create a component using player information
   //<PlayerBio player_number={obj.playernumber}></PlayerBio>
@@ -27,7 +45,8 @@ const Players = () => {
         <PlayersTable currentId={playerId} parentCallback={getPlayerId}></PlayersTable>
       </div>
       <div className="column">
-        <PlayerBio name="Anthony Cowan Jr." image="../../anthonycowan.png" number="1" position="Guard" weight="180" height="6'0"></PlayerBio>
+        <PlayerBio name={`${playerInfo.first_name} ${playerInfo.last_name}`} image={`../../player_image_${playerId}.png`}
+          number={playerInfo.player_number} position="PLACEHOLDER" weight={playerInfo.weight} height={`${playerInfo.height_feet}' ${playerInfo.height_inch}\"`}></PlayerBio>
       </div>
     </div>
   </Layout>
