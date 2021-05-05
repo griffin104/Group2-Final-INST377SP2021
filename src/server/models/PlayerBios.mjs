@@ -12,6 +12,10 @@ export default (sequelize, DataTypes) => {
               type: DataTypes.INTEGER,
               allowNull: false
           },
+          player_position: {
+              type: DataTypes.STRING,
+              allowNull: false,
+          },
           first_name: {
               type: DataTypes.STRING
           },
