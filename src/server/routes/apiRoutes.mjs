@@ -43,7 +43,7 @@ router.post("/player-bios", async (req, res) => {
   try {
     const newPlayerBio = await db.PlayerBios.create({
       player_number: req.body.player_number,
-      player_position: req.body.player_position,
+      position: req.body.position,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       height_feet: req.body.height_feet,
@@ -67,7 +67,7 @@ router.put("/player-bios", async (req, res) => {
     await db.PlayerBios.update(
       {
         player_number: req.body.player_number,
-        player_position: req.body.player_position,
+        position: req.body.position,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         height_feet: req.body.height_feet,

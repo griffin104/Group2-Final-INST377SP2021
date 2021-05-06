@@ -12,7 +12,7 @@ export default (sequelize, DataTypes) => {
               type: DataTypes.INTEGER,
               allowNull: false
           },
-          player_position: {
+          position: {
               type: DataTypes.STRING,
               allowNull: false,
           },
