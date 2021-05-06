@@ -46,7 +46,7 @@ const Players = () => {
       </div>
       <div className="column">
         <PlayerBio name={`${playerInfo.first_name} ${playerInfo.last_name}`} image={`../../player_image_${playerId}.png`}
-          number={playerInfo.player_number} position="PLACEHOLDER" weight={playerInfo.weight} height={`${playerInfo.height_feet}' ${playerInfo.height_inch}\"`}></PlayerBio>
+          number={playerInfo.player_number} position={playerInfo.position} weight={playerInfo.weight} height={`${playerInfo.height_feet}' ${playerInfo.height_inch}\"`}></PlayerBio>
       </div>
     </div>
   </Layout>

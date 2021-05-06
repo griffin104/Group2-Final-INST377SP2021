@@ -10,6 +10,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
     let deleteColumn = ''
     let addRow = ''
     let submit= ''
+    let domain = ''
 
     let newTable = [...table]
 
@@ -19,6 +20,10 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
     // sortBy[{propertyBeingSorted}, {asc}]
     const [sortBy, setSortBy] = useState([properties[0], true])
     const [filter, setFilter] = useState(() => {return headers.map(() => (''))})
+
+    if (process.env.DOMAIN) {
+        domain = process.env.DOMAIN
+    }
 
  
     function sortTable(prop) {
@@ -54,9 +59,13 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
     function checkFilter(row) {
         let ans = true
         properties.forEach((prop, i) => {
-            if (filter[i-1] && !row[prop].toString().toUpperCase().includes(filter[i-1].toUpperCase())) {
+            if (!row[prop] && filter[i]) {
                 ans = false
-            } 
+            } else if (!admin && filter[i-1] && !row[prop].toString().toUpperCase().includes(filter[i-1].toUpperCase())) {
+                ans = false
+            } else if (admin && filter[i] && !row[prop].toString().toUpperCase().includes(filter[i].toUpperCase())) {
+                ans = false
+            }
         })
         return ans
     }
@@ -84,20 +93,17 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
     }
 
     async function deleteRow(e) {
-        if(window.confirm("Are you sure you want to delete this row?")) {
             let id = e.target.closest('tr').firstChild.textContent
-            /* const response = await fetch(`${process.env.DOMAIN}/api/player-bios/${id}`, {
-                method: 'DELETE'
+             /* const response = await fetch(`${process.env.DOMAIN}/api/player-bios/${id}`, {
+                method: 'DELETE' 
             }) */
-            newTable.forEach(obj => {
-                if (obj[Object.keys(obj)[0]].toString() === id) {
-                    console.log(obj)
-
+            newTable.forEach((obj, i) => {
+                if (obj[properties[0]].toString() === id) {
+                    newTable.splice(i, 1)
+                    console.log(newTable)
                 }
             })
-        } else {
-            console.log("Not Deleted")
-        }
+            e.target.closest('tr').classList.add('has-background-danger-light')
     }
 
     function addExtraRow(i, e) {
@@ -111,10 +117,37 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
         </tr>])
     }
 
+    function submitChanges() {
+        if (window.confirm("Are you sure you want to submit these changes?")) {
+            let pk = properties[0]
+            table.forEach(async (row) =>  {
+                let newRow = findRow(newTable, pk, row[pk])
+                if(newRow) {
+                    //Check if old and new row are different
+
+                } else {
+                    //Delete the row
+                    const response = await fetch(`${domain}/api/player-bios/${row[pk]}`, {
+                        method: 'DELETE' 
+                    }) 
+                }
+            }) 
+            window.location.reload()
+        }
+    }
+
+    function findRow(table, pk, value) {
+        for (let i=0; i < table.length; i++) {
+            if(table[i][pk] === value) {
+                return table[i]
+            }
+        }
+    }
+
     if (admin) {
         deleteColumn = <td><button className="button has-background-danger" onClick={deleteRow}>Delete</button></td>
         addRow = <tr><td className="has-background-info is-clickable" onClick={addExtraRow}>Add Row..</td></tr>
-        submit = <button className="button has-background-success is-large is-pulled-right">Submit</button>
+        submit = <button className="button has-background-success is-large is-pulled-right" onClick={submitChanges}>Submit</button>
     }
 
     return (

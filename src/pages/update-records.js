@@ -38,7 +38,6 @@ const Schedule = () => {
 
   useEffect(() => {
     if (headers.length) {
-      console.log(activeTable)
       setTable(<Table table={activeTable} headers={headers} admin={true}></Table>)
     }
   },[headers])
@@ -46,7 +45,6 @@ const Schedule = () => {
   function handleClick(route) {
     setActiveTableRoute(route)
   }
-
 
   return (
     <Layout>

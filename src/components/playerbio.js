@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
-import PropTypes from "prop-types"
+import React from "react"
+
 import { StaticImage } from "gatsby-plugin-image"
-import styles from './styles.css'
+import './styles.css'
 
 const PlayerBio = ({ image, number, position, name, weight, height }) => {
     return (
@@ -12,7 +12,7 @@ const PlayerBio = ({ image, number, position, name, weight, height }) => {
           <p className="subtitle is-4">{weight} lbs {height}</p>
         </div>
         <div className="column is-three-fifths">
-            <img src={image} alt="Selected Player Image"/>
+            <img src={image} style={{height: "700px"}} alt="Selected Player Image"/>
         </div>
         <div className="column is-one-fifth">
             <StaticImage
