@@ -12,21 +12,21 @@ const PlayerStats = ({ location }) => {
   let table = ''
   let route
 
-  const [playerInfo, setplayerInfo] = useState([])
+  const [playerInfo, setPlayerInfo] = useState([])
   const [playerId, setPlayerId] = useState(parseInt(urlParams.get("player")) || 1)
 
 
   if (process.env.DOMAIN) {
     route = `${process.env.DOMAIN}/api/player-game-stats/players/${playerId}`
   } else {
-    route = `/api/player-game-stats/player/${playerId}`
+    route = `/api/player-game-stats/players/${playerId}`
   }
 
   useEffect(() => {
     fetch(route)
-      .then(response => response.json()) // parse JSON from request
+      .then(response => response.json())
       .then(resultData => {
-        setplayerInfo(resultData.data)
+        setPlayerInfo(resultData.data)
       })
   }, [playerId])
 
