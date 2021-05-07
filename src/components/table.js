@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
 import { Link } from "gatsby"
 
-const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
+const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute }) => {
 
     const properties = Object.getOwnPropertyNames(table[0])
 
@@ -13,6 +13,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
     let domain = ''
 
     let newTable = [...table]
+    let originalTable = []
 
     const [visibleColumns, setVisibleColumns] = useState(() => {return headers.map(()=>(true))})
     const [extraRows, setExtraRows] = useState([])
@@ -20,6 +21,10 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
     // sortBy[{propertyBeingSorted}, {asc}]
     const [sortBy, setSortBy] = useState([properties[0], true])
     const [filter, setFilter] = useState(() => {return headers.map(() => (''))})
+
+    useEffect(() => {
+        originalTable = JSON.parse(JSON.stringify(table))
+    }, [table])
 
     if (process.env.DOMAIN) {
         domain = process.env.DOMAIN
@@ -77,6 +82,11 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
         } else {
             e.target.className = ""
         }
+        newTable.forEach(newRow => {
+            if (newRow[properties[0]] === row[properties[0]]) {
+                newRow[prop] = e.target.textContent
+            }
+        })
     }
     }
 
@@ -94,13 +104,9 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
 
     async function deleteRow(e) {
             let id = e.target.closest('tr').firstChild.textContent
-             /* const response = await fetch(`${process.env.DOMAIN}/api/player-bios/${id}`, {
-                method: 'DELETE' 
-            }) */
             newTable.forEach((obj, i) => {
                 if (obj[properties[0]].toString() === id) {
                     newTable.splice(i, 1)
-                    console.log(newTable)
                 }
             })
             e.target.closest('tr').classList.add('has-background-danger-light')
@@ -120,19 +126,34 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin }) => {
     function submitChanges() {
         if (window.confirm("Are you sure you want to submit these changes?")) {
             let pk = properties[0]
-            table.forEach(async (row) =>  {
+            originalTable.forEach(async (row) =>  {
                 let newRow = findRow(newTable, pk, row[pk])
+                let json = {}
                 if(newRow) {
                     //Check if old and new row are different
+                    properties.forEach(prop => {
+                        if (row[prop] !== newRow[prop]) {
+                            json[prop] = newRow[prop]
+                        }
+                    })
+
+                    if (Object.keys(json).length) {
+                        const response = await fetch(`${domain}/api/${apiRoute}/${row[pk]}`, {
+                            method: 'PUT',
+                            body: JSON.stringify(json)
+                        }) 
+                        console.log(response)
+                    }
 
                 } else {
                     //Delete the row
-                    const response = await fetch(`${domain}/api/player-bios/${row[pk]}`, {
+                    console.log("UH OH")
+                    const response = await fetch(`${domain}/api/${apiRoute}/${row[pk]}`, {
                         method: 'DELETE' 
-                    }) 
+                    })  
                 }
             }) 
-            window.location.reload()
+            //window.location.reload()
         }
     }
 
@@ -228,7 +249,8 @@ Table.propTypes = {
     path: PropTypes.string,
     pathColumn: PropTypes.number,
     pathState: PropTypes.func,
-    admin: PropTypes.bool
+    admin: PropTypes.bool,
+    apiRoute: PropTypes.string
     }
 
 Table.defaultProps = {
@@ -237,7 +259,8 @@ Table.defaultProps = {
     path: '',
     pathColumn: null,
     pathState: function(row, prop){return ''},
-    admin: false
+    admin: false,
+    apiRoute: ''
 }
 
 export default Table

@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 const Schedule = () => {
 
   let route = ''
-
+  let route2 = ''
 
   const [activeTableRoute, setActiveTableRoute] = useState('/game-stats')
   const [activeTable, setActiveTable] = useState([])
@@ -37,8 +37,27 @@ const Schedule = () => {
 
 
   useEffect(() => {
+    console.log(headers[0])
+    switch(headers[0]) {
+      case 'player_id':
+        route2 = 'player-bios'
+        break
+      case 'player_stats_id':
+        route2 = 'player-stats'
+        break
+      case 'game_id':
+        route2 = 'games'
+        break
+      case 'game_stats_id':
+        route2 = 'game-stats'
+        break
+      case 'player_game_stats_id':
+        route2 = 'player-game-stats'
+        break
+    }
+
     if (headers.length) {
-      setTable(<Table table={activeTable} headers={headers} admin={true}></Table>)
+      setTable(<Table table={activeTable} headers={headers} admin={true} apiRoute={route2}></Table>)
     }
   },[headers])
 
