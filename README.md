@@ -42,42 +42,48 @@ The are no prewritten tests in the source repository, but you can use Cypress to
 3. In the second terminal run ```npm test```.
 
 ## Server application APIs
-```/games``` - API route for games played and stats from the game as a team 
-* GET - Logs to console response query from URL. returns response 'Got a GET request from /api'.
-* POST - obtains course name from request body to fetch url. fetch data json from PlanetTerp grades API and returns JSON response. 
-* PUT - returns response 'Got a PUT request at /api'.
-* Delete - 
+```/games``` - API route for games played
+* GET - Reads the model /games, finds all the element and returns the response to the client in JSON format
+* POST - Creates a json object and send the games data to the server in JSON format
+* PUT - Update data where the game_id matches. 
+* Delete - Destroy elements of the data where the game_id matches the specified parameter 
 
-```/players``` - API route for games played and stats from the game as a team 
+```/players``` - API route for the players on the team
 * GET - 
 * POST -
 * PUT - 
 * Delete - 
 
-```/player-stats``` - API route for games played and stats from the game as a team 
-* GET - 
-* POST -
-* PUT - 
-* Delete - 
-
-
-```/player-bios``` - API route for games played and stats from the game as a team 
+```/player-stats``` - API route for statistics of players on the team 
 * GET - 
 * POST -
 * PUT - 
 * Delete - 
 
 
-
-```/game-stats``` - API route for games played and stats from the game as a team 
+```/player-bios``` - API route for background of players
 * GET - 
 * POST -
 * PUT - 
 * Delete - 
+
+
+
+```/game-stats``` - API route for stats from the game as a team 
+* GET - 
+* POST -
+* PUT - 
+* Delete - 
+
 ## Known Bugs and Future Development
 ### Bugs:
-- 
+- Using the textbox to filtering columns with numerical data returns
+any element in the column that matches the number no matter the position
+
 
 
 ### Future Development: 
+* Auto-import data submitted to our website and updates on its own incrementally
+* Implement a mobile user interface to allow for better navigation on mobile devices  
+* UMD Credential login to allow potential users such as fans to submit stats
 * 
