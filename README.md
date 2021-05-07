@@ -48,32 +48,32 @@ The are no prewritten tests in the source repository, but you can use Cypress to
 * PUT - Update data where the game_id matches. 
 * Delete - Destroy elements of the data where the game_id matches the specified parameter 
 
-```/players``` - API route for the players on the team
-* GET - 
-* POST -
-* PUT - 
-* Delete - 
+```/players-game-stats``` - API route for the players on the team
+* GET - Reads the model /PlayerGameStats, finds all the element and returns the response to the client in JSON format
+* POST - Creates a json object and send the players game statistics data to the server in JSON format
+* PUT - Update data where the player_game_stats_id matches.
+* Delete - Destroy elements of the data where the player_game_stats_id matches the specified parameter 
 
 ```/player-stats``` - API route for statistics of players on the team 
-* GET - 
-* POST -
-* PUT - 
-* Delete - 
+* GET - Reads the model /player-stats, finds all the element and returns the response to the client in JSON format
+* POST - Creates a json object and send the player-stats data to the server in JSON 
+* PUT - Update data where the player_stats_id matches. 
+* Delete - Destroy elements of the data where the player_stats_id matches the specified parameter 
 
 
 ```/player-bios``` - API route for background of players
-* GET - 
-* POST -
-* PUT - 
-* Delete - 
+* GET - Reads the model /player-bios, finds all the element and returns the response to the client in JSON format
+* POST - Creates a json object and send the games data to the server in JSON 
+* PUT - Update data where the player_id matches. 
+* Delete - Destroy elements of the data where the player_id matches the specified parameter 
 
 
 
 ```/game-stats``` - API route for stats from the game as a team 
-* GET - 
-* POST -
-* PUT - 
-* Delete - 
+* GET - Reads the model /game-stats, finds all the element and returns the response to the client in JSON format
+* POST - Creates a json object and send the games data to the server in JSON format
+* PUT - Update data where the game_stats_id matches. 
+* Delete - Destroy elements of the data where the game_stats_id matches the specified parameter 
 
 ## Known Bugs and Future Development
 ### Bugs:
@@ -86,4 +86,3 @@ any element in the column that matches the number no matter the position
 * Auto-import data submitted to our website and updates on its own incrementally
 * Implement a mobile user interface to allow for better navigation on mobile devices  
 * UMD Credential login to allow potential users such as fans to submit stats
-* 
