@@ -26,19 +26,12 @@ The are no prewritten tests in the source repository, but you can use Cypress to
 * PUT - returns response 'Got a PUT request at /api'.
 * Delete - 
 
-```/profapi``` - API route for professor reviews data.
-* GET - Logs to console response query from URL. returns response 'Got a GET request from /api'.
-* POST - obtains professor name from request body to fetch url. fetch data json from PlanetTerp professors API and returns JSON response. 
-* PUT - returns response 'Got a PUT request at /api'.
+
 
 ## Known Bugs and Future Development
 ### Bugs:
-- There may be null values in the course and professor reviews data that may need to be handled. 
+- 
 
 
 ### Future Development: 
-* Handle null values in course and professor reviews data.
-* Adding data for more semesters; Spring 2021.
-* Diplaying average GPA in course details by professor.
-* Displaying average professor rating in professor reviews search.
-* Adding more ways to filter courses.
+* 
