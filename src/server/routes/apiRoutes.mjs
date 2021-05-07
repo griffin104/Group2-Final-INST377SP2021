@@ -2,9 +2,6 @@ import express from "express";
 
 import db from "../database/initializeDB.mjs";
 
-const jwt = require('jsonwebtoken');
-const app = express();
-
 const router = express.Router();
 
 router.get("/", (req, res) => {
