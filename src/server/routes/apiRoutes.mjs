@@ -286,6 +286,20 @@ router.get("/game-stats", async (req, res) => {
   }
 });
 
+router.get("/game-stats/:game_stats_id", async (req, res) => {
+  try {
+    const game_stats = await db.GameStats.findAll({
+      where: {
+        game_stats_id: req.params.game_stats_id
+      }
+    })
+    res.json(game_stats)
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err)
+  }
+});
+
 router.post("/game-stats", async (req, res) => {
   try {
     const newGameStats = await db.GameStats.create({
