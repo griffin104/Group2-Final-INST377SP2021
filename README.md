@@ -77,7 +77,7 @@ The are no prewritten tests in the source repository, but you can use Cypress to
 
 ## Known Bugs and Future Development
 ### Bugs:
-- Using the textbox to filtering columns with numerical data returns
+- Using the textbox to filter columns with numerical data returns
 any element in the column that matches the number no matter the position
 
 
