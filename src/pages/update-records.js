@@ -37,7 +37,6 @@ const Schedule = () => {
 
 
   useEffect(() => {
-    console.log(headers[0])
     switch(headers[0]) {
       case 'player_id':
         route2 = 'player-bios'

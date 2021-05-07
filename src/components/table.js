@@ -76,8 +76,8 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
     }
 
     function editCell(row, prop, e) {
-        if (row) {
-        if (row[prop].toString() !== e.target.textContent) {
+        if (row ) {
+        if (!row[prop] || row[prop].toString() !== e.target.textContent) {
             e.target.className = "has-background-success-light"
         } else {
             e.target.className = ""
@@ -136,18 +136,19 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
                             json[prop] = newRow[prop]
                         }
                     })
-
                     if (Object.keys(json).length) {
-                        const response = await fetch(`${domain}/api/${apiRoute}/${row[pk]}`, {
+                        json[pk] = row[pk]
+                        const response = await fetch(`${domain}/api/${apiRoute}/`, {
                             method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
                             body: JSON.stringify(json)
                         }) 
-                        console.log(response)
                     }
 
                 } else {
                     //Delete the row
-                    console.log("UH OH")
                     const response = await fetch(`${domain}/api/${apiRoute}/${row[pk]}`, {
                         method: 'DELETE' 
                     })  
