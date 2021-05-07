@@ -48,8 +48,32 @@ The are no prewritten tests in the source repository, but you can use Cypress to
 * PUT - returns response 'Got a PUT request at /api'.
 * Delete - 
 
+```/players``` - API route for games played and stats from the game as a team 
+* GET - 
+* POST -
+* PUT - 
+* Delete - 
+
+```/player-stats``` - API route for games played and stats from the game as a team 
+* GET - 
+* POST -
+* PUT - 
+* Delete - 
 
 
+```/player-bios``` - API route for games played and stats from the game as a team 
+* GET - 
+* POST -
+* PUT - 
+* Delete - 
+
+
+
+```/game-stats``` - API route for games played and stats from the game as a team 
+* GET - 
+* POST -
+* PUT - 
+* Delete - 
 ## Known Bugs and Future Development
 ### Bugs:
 - 
