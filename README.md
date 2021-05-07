@@ -8,12 +8,12 @@ https://inst377-basketball.herokuapp.com/
 
 ## Target Browsers
 Our target browsers for proper viewing and experiencing are on desktop with all major browsers, such as Chrome, Firefox, Safari and Edge. The latest versions of each are all supported. 
-			Compatible with Internet Explorer Version 11 and higher 
-			Compatible with Google Chrome Versions 60 and higher 
-			Compatible with Mozilla Firefox Versions 52 and higher 
-			Compatible with Safari (on MacOs) Versions 10.1 and higher 
-			Compatible with Opera versions 47 and higher 
-			Compatible with all versions of Microsoft Edge (80 and higher)
+1. Compatible with Internet Explorer Version 11 and higher 
+2. Compatible with Google Chrome Versions 60 and higher 
+3. Compatible with Mozilla Firefox Versions 52 and higher 
+4. Compatible with Safari (on MacOs) Versions 10.1 and higher 
+5. Compatible with Opera versions 47 and higher 
+6. Compatible with all versions of Microsoft Edge (80 and higher)
 
 
 
