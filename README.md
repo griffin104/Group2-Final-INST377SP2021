@@ -20,26 +20,69 @@ Our target browsers for proper viewing and experiencing are on desktop with all 
 ## Links 
 Developer Manual 
 
-## Developer Manual 
+# Developer Manual
 
-#### How to install application and all dependencies
+## How to install application and all dependencies
 1. Clone this repository through Github Desktop or through Terminal.
 2. Open repository in VSCode Terminal or Terminal application.
-3. Type npm install into terminal window and run.
-4. The application should now be set to use.
+3. type ```npm install``` into terminal window and run.
+4. type ```gatsby build``` into terminal window and run.
+5. type ```gatsby develop``` into terminal window and run.
+6. The application should now be set to use.
 
-#### How to run application on a server
+## How to run application on a server
 1. Open repository in VSCode terminal or Terminal application.
-2. Run npm start. There should be no errors.
-3. In a web browser, go to url: http://localhost:3000/.
+2. Run ```npm start```. There should be no errors.
+3. In a web browser, go to url: ```http://localhost:8000/```.
 
-#### To run tests for software
+## To run tests for software
+The are no prewritten tests in the source repository, but you can use Cypress to run your own written tests.
+1. Open two terminals and make sure you are in the main project directory
+2. In the first terminal, run ```npm start```.
+3. In the second terminal run ```npm test```.
+
+## Server application APIs
+```/games``` - API route for games played
+* GET - Reads the model /games, finds all the element and returns the response to the client in JSON format.
+* POST - Creates a json object and send the games data to the server in JSON format.
+* PUT - Update data where the game_id matches. 
+* Delete - Destroy elements of the data where the game_id matches the specified parameter.
+
+```/players-game-stats``` - API route for the players on the team
+* GET - Reads the model /PlayerGameStats, finds all the element and returns the response to the client in JSON format.
+* POST - Creates a json object and send the players game statistics data to the server in JSON format.
+* PUT - Update data where the player_game_stats_id matches.
+* Delete - Destroy elements of the data where the player_game_stats_id matches the specified parameter.
+
+```/player-stats``` - API route for statistics of players on the team 
+* GET - Reads the model /player-stats, finds all the element and returns the response to the client in JSON format.
+* POST - Creates a json object and send the player-stats data to the server in JSON.
+* PUT - Update data where the player_stats_id matches. 
+* Delete - Destroy elements of the data where the player_stats_id matches the specified parameter.
 
 
-#### Server application APIs
+```/player-bios``` - API route for background of players
+* GET - Reads the model /player-bios, finds all the element and returns the response to the client in JSON format.
+* POST - Creates a json object and send the games data to the server in JSON 
+* PUT - Update data where the player_id matches. 
+* Delete - Destroy elements of the data where the player_id matches the specified parameter.
 
-#### Known Bugs and Future Development
-Bugs:
 
 
-Future Development: 
+```/game-stats``` - API route for stats from the game as a team 
+* GET - Reads the model /game-stats, finds all the element and returns the response to the client in JSON format.
+* POST - Creates a json object and send the games data to the server in JSON format.
+* PUT - Update data where the game_stats_id matches. 
+* Delete - Destroy elements of the data where the game_stats_id matches the specified parameter.
+
+## Known Bugs and Future Development
+### Bugs:
+- Using the textbox to filter columns with numerical data returns
+any element in the column that matches the number no matter the position.
+
+
+
+### Future Development: 
+* Implement an way to auto-import data submitted to our website that also updates on its own incrementally.
+* Implement a mobile user interface to allow for better navigation on mobile devices.
+* Implement UMD credential login to allow potential users such as fans to submit stats.
