@@ -383,9 +383,12 @@ router.delete("/game-stats/:game_stats_id", async (req, res) => {
 /////////////////// PLAYER GAME STATS ///////////////////
 /////////////////// ///////////////// ///////////////////
 
-router.get("/games:game_id", async (req, res) => {
+router.get("/player-game-stats", async (req, res) => {
   try {
-    // ENDPOINT to get ELEMENT by ID
+    const stats = await db.PlayerGameStats.findAll();
+    const reply =
+      stats.length > 0 ? { data: stats } : { message: "no results found" };
+    res.json(reply);
   } catch (err) {
     console.error(err);
     res.status(400).send(err)
