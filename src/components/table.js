@@ -17,6 +17,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
 
     const [visibleColumns, setVisibleColumns] = useState(() => {return headers.map(()=>(true))})
     const [extraRows, setExtraRows] = useState([])
+    const [newRows, setNewRows] = useState([{}])
 
     // sortBy[{propertyBeingSorted}, {asc}]
     const [sortBy, setSortBy] = useState([properties[0], true])
@@ -76,7 +77,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
     }
 
     function editCell(row, prop, e) {
-        if (row ) {
+        if (row) {
         if (!row[prop] || row[prop].toString() !== e.target.textContent) {
             e.target.className = "has-background-success-light"
         } else {
@@ -88,6 +89,17 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
             }
         })
     }
+    }
+
+    function editNewCell(e) {
+        let id = parseInt(e.target.closest('tr').id.substring(8))
+        let ans = [...newRows]
+        while (typeof ans[id] === 'undefined') {
+            setNewRows([...ans, {}])
+            ans = [...ans, {}]
+        } 
+        ans[id][properties[e.target.cellIndex]] = e.target.textContent 
+        setNewRows([...ans])
     }
 
     function toggleColumn(i, e) {
@@ -113,17 +125,16 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
     }
 
     function addExtraRow(i, e) {
-        console.log(extraRows)
         setExtraRows([...extraRows,
-        <tr>
+        <tr id={`new-row ${extraRows.length}`}>
             {properties.map(prop => {
-                return (<td contentEditable={admin} onInput={(e) => editCell(null, null, e)} suppressContentEditableWarning={true}></td>)
+                return (<td contentEditable={admin} onInput={editNewCell} suppressContentEditableWarning={true}></td>)
             })}
             {deleteColumn}
         </tr>])
     }
 
-    function submitChanges() {
+    async function submitChanges() {
         if (window.confirm("Are you sure you want to submit these changes?")) {
             let pk = properties[0]
             originalTable.forEach(async (row) =>  {
@@ -153,7 +164,8 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
                         method: 'DELETE' 
                     })  
                 }
-            }) 
+            })
+            await addNewRows()
             //window.location.reload()
         }
     }
@@ -164,6 +176,20 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
                 return table[i]
             }
         }
+    }
+
+    function addNewRows() {
+        newRows.forEach(async (row) => {
+            console.log(row)
+            const response = await fetch(`${domain}/api/${apiRoute}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(row)
+            })
+            console.log(response)
+        })
     }
 
     if (admin) {
