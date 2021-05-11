@@ -18,7 +18,7 @@ Our target browsers for proper viewing and experiencing are on desktop with all 
 
 
 ## Links 
-Developer Manual 
+[Developer Manual](#Developer-Manual)
 
 # Developer Manual
 
@@ -26,14 +26,14 @@ Developer Manual
 1. Clone this repository through Github Desktop or through Terminal.
 2. Open repository in VSCode Terminal or Terminal application.
 3. type ```npm install``` into terminal window and run.
-4. type ```gatsby build``` into terminal window and run.
-5. type ```gatsby develop``` into terminal window and run.
+4. type ```npm run build``` into terminal window to build your code.
 6. The application should now be set to use.
 
 ## How to run application on a server
 1. Open repository in VSCode terminal or Terminal application.
-2. Run ```npm start```. There should be no errors.
-3. In a web browser, go to url: ```http://localhost:8000/```.
+2. Run ```npm start``` for a production build. There should be no errors.
+4. Run ```npm run develop``` for a development build. There should be no errors. Note: The back-end does not run on the development build.
+5. In a web browser, go to url: ```http://localhost:8000/```.
 
 ## To run tests for software
 The are no prewritten tests in the source repository, but you can use Cypress to run your own written tests.
@@ -42,43 +42,75 @@ The are no prewritten tests in the source repository, but you can use Cypress to
 3. In the second terminal run ```npm test```.
 
 ## Server application APIs
-```/games``` - API route for games played
-* GET - Reads the model /games, finds all the element and returns the response to the client in JSON format.
-* POST - Creates a json object and send the games data to the server in JSON format.
-* PUT - Update data where the game_id matches. 
-* Delete - Destroy elements of the data where the game_id matches the specified parameter.
+### PlayerBios - API route for background of players
+```/player-bios```
+* GET - Reads the model /player-bios, finds all the elements and returns the response to the client in JSON format.
+* POST - Creates a json object and send the games data to the server in JSON .
+* PUT - Update data where the player_id matches. 
 
-```/players-game-stats``` - API route for the players on the team
-* GET - Reads the model /PlayerGameStats, finds all the element and returns the response to the client in JSON format.
-* POST - Creates a json object and send the players game statistics data to the server in JSON format.
-* PUT - Update data where the player_game_stats_id matches.
-* Delete - Destroy elements of the data where the player_game_stats_id matches the specified parameter.
+    ```/player-bios/:player_id```
+* GET - Reads the model /player-bios, finds the element with matching player_id.
+* DELETE - Destroys the element of the data with matching player_id.
 
-```/player-stats``` - API route for statistics of players on the team 
-* GET - Reads the model /player-stats, finds all the element and returns the response to the client in JSON format.
+
+### PlayerStats - API route for total statistics of players on the team 
+```/player-stats```
+* GET - Reads the model /player-stats, finds all the elements and returns the response to the client in JSON format.
 * POST - Creates a json object and send the player-stats data to the server in JSON.
 * PUT - Update data where the player_stats_id matches. 
-* Delete - Destroy elements of the data where the player_stats_id matches the specified parameter.
+
+```/player-stats/:player_stats_id```
+* DELETE - Destroys the element of the data with matching player_stats_id.
 
 
-```/player-bios``` - API route for background of players
-* GET - Reads the model /player-bios, finds all the element and returns the response to the client in JSON format.
-* POST - Creates a json object and send the games data to the server in JSON 
-* PUT - Update data where the player_id matches. 
-* Delete - Destroy elements of the data where the player_id matches the specified parameter.
+### Games - API route for games played
+```/games```
+* GET - Reads the model /games, finds all the elements and returns the response to the client in JSON format.
+* POST - Creates a json object and send the games data to the server in JSON format.
+* PUT - Update data where the game_id matches. 
+
+```/games/:game_id```
+* DELETE - Destroys the element of the data with matching game_id.
 
 
-
-```/game-stats``` - API route for stats from the game as a team 
-* GET - Reads the model /game-stats, finds all the element and returns the response to the client in JSON format.
+### GameStats - API route for stats from the game as a team 
+```/game-stats```
+* GET - Reads the model /game-stats, finds all the elements and returns the response to the client in JSON format.
 * POST - Creates a json object and send the games data to the server in JSON format.
 * PUT - Update data where the game_stats_id matches. 
-* Delete - Destroy elements of the data where the game_stats_id matches the specified parameter.
+
+```/game-stats/:game_stats_id```
+* GET - Reads the model /game-stats, finds the element with matching gane_stats_id.
+* DELETE - Destroys the element of the data with matching game_stats_id.
+
+
+### PlayerGameStats - API route for the player stats per game on the team
+```/players-game-stats```
+* GET - Reads the model /PlayerGameStats, finds all the elements and returns the response to the client in JSON format.
+* POST - Creates a json object and send the players game statistics data to the server in JSON format.
+* PUT - Update data where the player_game_stats_id matches.
+
+```/player-game-stats/:player_game_stats_id```
+* DELETE - Destroys the element of the data with matching player_game_stats_id.
+
+```/player-game-stats/players/:player_id```
+* GET - Reads the model /PlayerGameStats, finds all the elements with a matching player_id and returns the response to the client in JSON format.
+
+```/player-game-stats/games/:game_id```
+* GET - Reads the model /PlayerGameStats, finds all the elements with a matching game_id and returns the response to the client in JSON format.
+
+
+###  Custom Queries
+
+```/game-info```
+* Get - Reads the models /games and /game_stats and returns the joined response to the client in JSON format.
 
 ## Known Bugs and Future Development
 ### Bugs:
 - Using the textbox to filter columns with numerical data returns
 any element in the column that matches the number no matter the position.
+- Only 1 row can be added at a time.
+- Many errors may occur when trying to update more than one table at a time. Only make changes to 1 table at a time.
 
 
 
