@@ -166,7 +166,7 @@ const Table = ({ table, headers, path, pathColumn, pathState, admin, apiRoute })
                 }
             })
             await addNewRows()
-            //window.location.reload()
+            window.location.reload()
         }
     }
 
