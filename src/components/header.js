@@ -3,6 +3,17 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
+/**
+ * This is the header component
+ * @component
+ * @example
+ * const title = "mySite"
+ * return (
+ *    <Header siteTitle={title} />
+ * )
+ */
+
+
 //There are many ways to define the component, there are probably pros and cons to each
 //but I'm not experienced enough to know that. Just keep this in mind if looking at other
 //examples online.
@@ -77,6 +88,9 @@ const Header = ({ siteTitle }) => {
 
 //This defines the siteTitle as a string 
 Header.propTypes = {
+  /**
+   * Title of the website
+   */
   siteTitle: PropTypes.string,
 }
 

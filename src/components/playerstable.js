@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
+/**
+ * A table of all the players and the seasons they played
+ * @component
+ * @example
+ * return(
+ *  <PlayersTable currentId={1} />
+ * )
+ */
+
 const PlayersTable = ({ currentId, parentCallback }) => {
 
     const [activePlayer, setActivePlayer] = useState(currentId)
@@ -49,7 +58,7 @@ const PlayersTable = ({ currentId, parentCallback }) => {
 }
 
 PlayersTable.propTypes = {
-    currentId: PropTypes.number,
+    currentId: PropTypes.number.isRequired,
     parentCallback: PropTypes.func,
 }
 

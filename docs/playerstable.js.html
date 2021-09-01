@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> playerstable.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Components</h3><ul><li><a href="Documented.html">Documented</a></li><li><a href="Header.html">Header</a></li><li><a href="PlayersTable.html">PlayersTable</a></li><li><a href="SEO.html">SEO</a></li><li><a href="User.html">User</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>playerstable.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
+
+/**
+ * A table of all the players and the seasons they played
+ * @component
+ * @example
+ * return(
+ *  &lt;PlayersTable currentId={1} />
+ * )
+ */
+
+const PlayersTable = ({ currentId, parentCallback }) => {
+
+    const [activePlayer, setActivePlayer] = useState(currentId)
+
+    const playerNames = ["ERIC AYALA (18-19)", "IVAN BENDER (18-19)", "WILL CLARK (18-19)", "ANTHONY COWAN JR (18-19)", "BRUNO FERNANDO (18-19)", 
+    "RICKY LINDO JR (18-19)", "REESE MONA (18-19)", "DARRYL MORSELL (18-19)", "TRACE RAMSEY (18-19)", "JALEN SMITH (18-19)", "SERREL SMITH JR (18-19)", 
+    "ANDREW TERRELL (18-19)", "JOSHUA TOMAIC (18-19)", "TRAVIS VALMON (18-19)", "AARON WIGGINS (18-19)", "ERIC AYALA (19-20)", "WILL CLARK (19-20)", 
+    "ANTHONY COWAN JR (19-20)", "HAKIM HART (19-20)", "RICKY LINDO JR (19-20)", "CHOL MARIAL (19-20)", "REESE MONA (19-20)", "DARRYL MORSELL (19-20)", 
+    "DONTA SCOTT (19-20)", "JALEN SMITH (19-20)", "SERREL SMITH JR (19-20)", "JOSHUA TOMAIC (19-20)", "TRAVIS VALMON (19-20)", "AARON WIGGINS (19-20)"]
+
+    function playerClick(e) {
+      setActivePlayer(e.target.id)
+    }
+
+    useEffect(() => {
+      parentCallback(activePlayer)
+    }, [activePlayer])
+
+    return(
+      &lt;table className="table is-bordered center has-text-centered">
+      &lt;thead>
+        &lt;tr>
+          &lt;th colSpan="2">Players&lt;/th>
+        &lt;/tr>
+      &lt;/thead>
+        &lt;tbody className="table-body">
+            {playerNames.map((name, i) => {
+              if (!(i%2)) {
+                if(playerNames[i+1]) {
+                  return (&lt;tr>
+                    &lt;td className={`is-clickable is-hoverable-cell ${i+1 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+1} onClick={playerClick}>{playerNames[i]}&lt;/td> 
+                    &lt;td className={`is-clickable is-hoverable-cell ${i+2 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+2} onClick={playerClick}>{playerNames[i+1]}&lt;/td>
+                  &lt;/tr>)
+                } else {
+                  return (&lt;tr>
+                    &lt;td className={`is-clickable is-hoverable-cell ${i+1 === parseInt(currentId) ? "is-info" : ""}`} role="presentation" id={i+1} onClick={playerClick}>{playerNames[i]}&lt;/td> 
+                  &lt;/tr>)
+                }
+              } else {
+                return &lt;tr>&lt;/tr>
+              }
+          })}
+        &lt;/tbody>
+    &lt;/table>
+    )
+}
+
+PlayersTable.propTypes = {
+    currentId: PropTypes.number.isRequired,
+    parentCallback: PropTypes.func,
+}
+
+PlayersTable.defaultProps = {
+    currentId: 1,
+    parentCallback: function() {return null}
+}
+
+export default PlayersTable</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

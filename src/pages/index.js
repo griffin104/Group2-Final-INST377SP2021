@@ -3,6 +3,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import User from "../components/user"
 
 //'npm start' or 'gatsby develop' to start the gatsby server, it runs on localhost:8000 by default
 //The index page with be the root directory, any other page will have the path equal to it's name. (Ex. /about-us)
@@ -30,6 +31,7 @@ const IndexPage = () => (
       <h1 className="title is-size-1 has-text-centered has-text-danger">MARYLAND TERRAPINS MEN'S BASKETBALL</h1>
     </div>
     <script>getTable('/api/games')</script>
+    <User/>
   </Layout>
 )
 

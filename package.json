@@ -6,7 +6,7 @@
   "author": "Griffin Barlow, Abhishek Padmanabhan, Brandon Pennington, Joseph Sanchez, Vig Vishwanathan",
   "dependencies": {
     "express": "^4.17.1",
-    "gatsby": "^3.1.1",
+    "gatsby": "^3.6.2",
     "gatsby-plugin-gatsby-cloud": "^2.1.0",
     "gatsby-plugin-image": "^1.1.1",
     "gatsby-plugin-manifest": "^3.1.0",
@@ -24,9 +24,13 @@
     "sequelize": "^6.6.1"
   },
   "devDependencies": {
+    "better-docs": "^2.3.2",
     "bulma": "^0.9.2",
+    "jsdoc": "^3.6.7",
     "node-sass": "^5.0.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "parcel": "^2.0.0-nightly.711",
+    "parcel-bundler": "^1.12.5"
   },
   "keywords": [
     "gatsby"
@@ -40,6 +44,7 @@
     "clean": "gatsby clean",
     "css-build": "node-sass --omit-source-map-url src/components/styles.scss src/components/styles.css",
     "css-watch": "npm run css-build -- --watch",
+    "docs": "jsdoc -c jsdoc.conf.json",
     "server": "nodemon server.mjs"
   },
   "repository": {
