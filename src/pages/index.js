@@ -23,7 +23,7 @@ const IndexPage = () => (
     When working with a static image (all images for this project), use <StaticImage> instead of <img>
     When working with a link that leads to somewhere else on our page, use <Link> instead of <a>*/}
     <div className="is-flex is-flex-direction-column is-align-items-center">
-      <h1 className="title is-1 has-text-centered">INST377 Group 2</h1>
+      <h1 className="title is-1 has-text-centered">INST377 Group 5</h1>
       <StaticImage
         src="../images/umdlogo.png"
         alt="A UMD basketball background graphic"
