@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import User from "../components/user"
 
+// Comment
 //'npm start' or 'gatsby develop' to start the gatsby server, it runs on localhost:8000 by default
 //The index page with be the root directory, any other page will have the path equal to it's name. (Ex. /about-us)
 
